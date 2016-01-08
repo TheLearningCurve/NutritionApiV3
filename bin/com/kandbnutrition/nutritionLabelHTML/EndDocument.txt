@@ -1,0 +1,10 @@
+			<div class="dvCalorieDiet line">
+				<div class="calorieNote">
+					<span class="star">*</span>
+					Percent Daily Values are based on a 2000 calorie diet.
+				</div>
+			</div>
+		</div>
+		<div id="mes"></div>
+	</body>
+</html>

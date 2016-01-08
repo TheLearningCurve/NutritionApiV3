@@ -1,0 +1,86 @@
+/*Created by Kyle Wolff May 13 2015 */
+
+.split-pane .split-pane-divider {
+	-fx-background-color: transparent;
+	-fx-cursor: null;
+}
+
+#navMenuSplitPane {
+	-fx-background-color: white;
+}
+
+/* This is the Pane that acts as the Dimmer when the Nav Menu opens  */
+#dimPane {
+	-fx-background-color: black;
+	-fx-opacity: 0;
+}
+#stackPaneAnchorPane, #mainFrameTopContainer{
+	-fx-background-color: #98FF42;
+}
+
+#appTitle {
+	-fx-font-family: 'sans-serif';
+	-fx-font-size: 24px;
+	-fx-font-style: normal;
+	-fx-text-fill: white;
+	-fx-font-weight: 600;
+}
+
+#mainPaneContainer, #mainRightAnchorPane {
+	-fx-background-color: transparent;
+} 
+
+#nutritionLabelDimPane {
+	-fx-background-color: black;
+	-fx-opacity: 0;
+}
+
+#navMenuButton:hover {
+	-fx-opacity: .45;
+}
+
+#navMenuButton {
+	-fx-background-color: transparent;
+	-fx-background-image: url(../resource/image/menuButton.png);
+	-fx-background-position: center;
+	-fx-background-size: contain;
+}
+
+#largeLogo {
+	-fx-image:url("../resource/image/NutritionLargeLogo.png");
+}
+
+
+/*
+ * Navigation Menu 
+ */
+ 
+.gridPane {
+	-fx-background-color: white;
+}
+ 
+.label {
+	-fx-font-weight: bold;
+	-fx-font-family: 'sans-serif';
+	-fx-font-size: 12;
+}
+
+#navMenu {
+	-fx-background-color: white;
+}
+
+#searchImageView {
+	-fx-image: url("../resource/image/searchIcon.png");
+}
+
+#macroCalcImageView {
+	-fx-image: url("../resource/image/macroIcon.png");
+}
+
+#fitTrackerImageView {
+	-fx-image: url("../resource/image/fitTrackerIcon.png");
+}
+
+#logoutImageView {
+	-fx-image: url("../resource/image/logout.png");
+}

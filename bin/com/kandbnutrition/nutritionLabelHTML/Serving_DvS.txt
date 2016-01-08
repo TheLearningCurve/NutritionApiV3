@@ -1,0 +1,9 @@
+<div class="serving">
+<div class="cf">
+<div class="servingSizeText fl">Serving Size:</div>
+<div class="rel servingSizeField fl">
+<div class="setter">
+<a class="unitQuantityUp" href="javascript:increase()"></a>
+<a class="unitQuantityDown" href="javascript:decrease()"></a>
+</div><input value="##iv" id="servingInputBox" class="unitQuantityBox" type="text" onkeypress="enter(event)">
+</div><div class="servingUnit fl unitHasTextbox">##su</div></div></div>
