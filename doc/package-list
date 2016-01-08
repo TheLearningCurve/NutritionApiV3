@@ -1,0 +1,8 @@
+application
+com.kandbnutrition.animation
+com.kandbnutrition.controller
+com.kandbnutrition.handler
+com.kandbnutrition.model
+com.kandbnutrition.nutritionLabelHTML
+com.kandbnutrition.resource
+com.kandbnutrition.service
