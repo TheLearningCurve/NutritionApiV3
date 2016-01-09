@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
-	private SceneManager sceneManager = SceneManager.getInstance();
+	private SceneManager sceneManager = SceneManager.INSTANCE;
 	
 	@Override
 	public void start(Stage primaryStage) {

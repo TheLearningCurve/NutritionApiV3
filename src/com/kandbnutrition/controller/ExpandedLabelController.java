@@ -55,7 +55,7 @@ public class ExpandedLabelController extends AnchorPane implements Initializable
 		adapter = new Adapter();
 		tooltip = new Tooltip();
 
-		sm = SceneManager.getInstance();
+		sm = SceneManager.INSTANCE;
 
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(stringValues.getExpandedLabelFxml()));
 		fxmlLoader.setController(this);
