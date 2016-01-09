@@ -15,15 +15,6 @@ public enum SceneManager {
 	private MainFrameController mainFrameController;
 	private Scene mainScene;
 	
-//	public static SceneManager getInstance() {
-//		
-//		if(sceneManager == null){
-//			sceneManager = new SceneManager();
-//		}
-//		
-//		return sceneManager;
-//	}
-	
 	public void setStage(Stage stage){
 		primaryStage = stage;
 	}
