@@ -1,0 +1,58 @@
+#WebViewControl {
+	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#WebViewControl .scroll-bar:vertical .increment-button,  
+#WebViewControl .scroll-bar:vertical .decrement-button {
+	-fx-background-color: white;
+	-fx-background-radius: 0em;
+	-fx-padding: 0 10 0 0;
+}
+
+#WebViewControl .scroll-bar:vertical .track {
+	-fx-background-color: white;
+	-fx-border-color: transparent;
+}
+
+#WebViewControl .scroll-bar:vertical .increment-arrow,  
+#WebViewControl .scroll-bar:vertical .decrement-arrow {
+	-fx-shape: " ";
+	-fx-padding: 1 5 0 0;
+}
+
+#WebViewControl .scroll-bar:vertical .thumb {
+	-fx-background-color: derive(black,90%);
+}
+
+#WebViewControl .scroll-bar:horizontal .track {
+	-fx-background-color: white;
+	-fx-border-color: transparent;
+}
+
+#WebViewControl .scroll-bar:horizontal .thumb {
+	-fx-background-color: transparent;
+}
+
+#WebViewControl .scroll-bar:horizontal .increment-arrow,  
+#WebViewControl .scroll-bar:horizontal .decrement-arrow {
+	-fx-shape: " ";
+	-fx-padding: 1 5 0 0;
+}
+
+#WebViewControl .scroll-bar:horizontal .increment-button,  
+#WebViewControl .scroll-bar:horizontal .decrement-button {
+	-fx-background-color: white;
+	-fx-background-radius: 0em;
+	-fx-padding: 0 10 0 0;
+}
+
+#xButton:hover {
+	-fx-background-image: url("../resource/image/close_Black.png");
+}
+
+#xButton {
+	-fx-background-image: url("../resource/image/close_White.png");
+	-fx-background-color: transparent;
+	-fx-background-position: center;
+	-fx-background-size: contain;
+}
