@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+<?import com.kandbnutrition.controller.*?>
+
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="832.0" stylesheets="@../resource/MainFrame.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                        <children>
+                          <StackPane layoutY="70.0" prefHeight="479.0" prefWidth="832.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+                            <children>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="503.0" prefWidth="832.0">
+                                <children>
+                                  <SplitPane fx:id="navMenuSplitPane" dividerPositions="0.0036" layoutY="1.0" prefHeight="481.0" prefWidth="832.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                                    <items>
+                                      <AnchorPane id="navMenu" fx:id="navMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="145.0" SplitPane.resizableWithParent="false">
+                                        <children>
+                                          <AnchorPane prefHeight="451.0" prefWidth="190.0">
+                                            <children>
+                                              <GridPane id="gridPane" layoutX="-1.0" prefHeight="451.0" prefWidth="170.0">
+                                                <rowConstraints>
+                                                  <RowConstraints maxHeight="145.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                                                  <RowConstraints maxHeight="145.0" minHeight="0.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                                  <RowConstraints maxHeight="145.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                                                  <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                                  <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="141.0" vgrow="SOMETIMES" />
+                                                </rowConstraints>
+                                                <children>
+                                                	
+												<!-- Start of the Navigation Menu layout --> 
+													                                               	
+                                                  <HBox id="searchIconHBox" fx:id="searchIconHBox" prefHeight="100.0" prefWidth="200.0">
+                                                    <children>
+                                                      <ImageView id="searchImageView" fx:id="searchImageView" fitHeight="27.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                                        <HBox.margin>
+                                                          <Insets left="5.0" top="20.0" />
+                                                        </HBox.margin>
+                                                      </ImageView>
+                                                      <Label id="searchLabel" fx:id="searchLabel" alignment="CENTER" prefHeight="17.0" prefWidth="111.0" text="Nutrition Finder">
+                                                        <HBox.margin>
+                                                          <Insets top="28.0" />
+                                                        </HBox.margin>
+                                                      </Label>
+                                                    </children>
+                                                  </HBox>
+                                                  <HBox id="macroCalculatorHBox" fx:id="macroCalculatorHBox" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                                    <children>
+                                                      <ImageView id="macroCalcImageView" fx:id="macorCalcImageView" fitHeight="27.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                                                        <HBox.margin>
+                                                          <Insets left="7.0" top="20.0" />
+                                                        </HBox.margin>
+                                                      </ImageView>
+                                                      <Label fx:id="macroCalcLabel" alignment="CENTER" prefHeight="17.0" prefWidth="99.0" text="Macro Calculator">
+                                                        <HBox.margin>
+                                                          <Insets left="5.0" top="25.0" />
+                                                        </HBox.margin>
+                                                      </Label>
+                                                    </children>
+                                                  </HBox>
+                                                  <HBox fx:id="fitTrackerHBox" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                                    <children>
+                                                      <ImageView fx:id="fitTrackerImageView" fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                        <HBox.margin>
+                                                          <Insets left="8.0" top="20.0" />
+                                                        </HBox.margin>
+                                                      </ImageView>
+                                                      <Label id="fitTrackerLabel" fx:id="fitTrackerLabel" prefHeight="17.0" prefWidth="77.0" text="Fit Tracker">
+                                                        <HBox.margin>
+                                                          <Insets left="10.0" top="25.0" />
+                                                        </HBox.margin>
+                                                      </Label>
+                                                    </children>
+                                                  </HBox>
+                                                  <HBox id="logoutHBox" fx:id="logoutHBox" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                                                    <children>
+                                                      <ImageView id="logoutImageView" fitHeight="27.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                                                        <HBox.margin>
+                                                          <Insets left="8.0" top="15.0" />
+                                                        </HBox.margin>
+                                                      </ImageView>
+                                                      <Label id="logoutLabel" fx:id="logoutLabel" prefHeight="17.0" prefWidth="77.0" text="Log Out">
+                                                        <HBox.margin>
+                                                          <Insets left="10.0" top="20.0" />
+                                                        </HBox.margin>
+                                                      </Label>
+                                                    </children>
+                                                  </HBox>
+                                                </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints />
+                                       </columnConstraints>
+                                              </GridPane>
+                                            </children>
+                                          </AnchorPane>
+                                        </children>
+                                      </AnchorPane>
+
+
+                                      <AnchorPane fx:id="mainRightAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="733.0">
+                                        <children>
+                                        	
+                                        	<!-- This Pane will be where the main features get placed 
+                                        	     The FxmlHandler will be replacing the FXML using the fx:id -->
+                                        		
+                                          <Pane fx:id="mainPaneContainer" prefHeight="481.0" prefWidth="825.0">
+                                            <children>
+                                              <!-- Created by Brandon VanderMeyf May 20 2015 -->
+
+											  <Pane id="itemListContainer" fx:id="itemListContainer" layoutX="200" prefHeight="450.0" prefWidth="412.0" />
+                                              
+                                              <ImageView id="largeLogo" fx:id="largeLogo" fitHeight="364.0" fitWidth="370.0" layoutX="225.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+                                      
+                                      		<Pane fx:id="dimPane" layoutX="-207.0" layoutY="1.0" mouseTransparent="true" prefHeight="636.0" prefWidth="1034.0" />
+                                              <!-- Layout for the dimming when the Navigation menu opens and for when the user views 
+                                               								the NutritionLabel -->
+                                              <Pane id="nutritionLabelDimPane" fx:id="nutritionLabelDimPane" prefHeight="479.0" prefWidth="824.0" visible="false" />
+                                              
+                                              <Pane id="nutritionLabelContainer" fx:id="nutritionLabelContainer" layoutX="220.0" prefHeight="479.0" prefWidth="438.0" visible="false" />
+                                            </children>
+                                          </Pane>
+                                        </children>
+                                      </AnchorPane>
+                                    </items>
+                                  </SplitPane>
+                                </children>
+                              </AnchorPane>
+                            </children>
+                          </StackPane>
+                          <Pane id="mainFrameTopContainer" fx:id="mainFrameTopContainer" prefHeight="71.0" prefWidth="833.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                              <Button id="navMenuButton" fx:id="navMenuButton" layoutX="26.0" layoutY="20.0" prefHeight="38.0" prefWidth="38.0" />
+        					  <Label id="appTitle" layoutX="74.0" layoutY="22.0" text="K &amp; B Nutrition" />
+        					     <AnchorPane id="optionsAnchorPane" fx:id="optionsAnchorPane" layoutX="450.0" layoutY="20.0" visible="true"> 
+									<children>
+
+									</children>                                      	
+                                 </AnchorPane>
+                            </children>
+                          </Pane>
+                        </children>
+                      </fx:root>

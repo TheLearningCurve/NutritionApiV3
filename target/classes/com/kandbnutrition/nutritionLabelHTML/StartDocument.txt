@@ -1,0 +1,9 @@
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="#css"/>
+		<script type="text/javascript" src="##js"></script>
+	</head>
+	
+	<body onload="pageLoad()">
+		<div class="nutritionLabel" style="width: 285px;">
+			<div class="title">Nutrition Facts</div>

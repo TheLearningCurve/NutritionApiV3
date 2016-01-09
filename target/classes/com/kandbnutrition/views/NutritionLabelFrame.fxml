@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+
+<fx:root id="RightPanel" fx:id="rightPanel" minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="420.0" stylesheets="@../resource/WebView.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+      <AnchorPane layoutY="1.0" prefHeight="391.0" prefWidth="420.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+         <children>
+      		<WebView id="WebViewControl" fx:id="webViewControl" layoutX="4.0" layoutY="5.0" prefHeight="418.0" prefWidth="335.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="5.0" />
+            <Button id="xButton" fx:id="close_icon" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" AnchorPane.bottomAnchor="392.0" AnchorPane.leftAnchor="344.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="14.0" />
+         </children>
+      </AnchorPane>
+	</children>
+</fx:root>
