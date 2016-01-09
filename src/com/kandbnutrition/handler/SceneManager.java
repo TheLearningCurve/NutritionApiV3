@@ -7,21 +7,22 @@ import com.kandbnutrition.controller.MainFrameController;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class SceneManager {
+public enum SceneManager {
+	INSTANCE;
 	
 	public static SceneManager sceneManager = null;
 	private Stage primaryStage;
 	private MainFrameController mainFrameController;
 	private Scene mainScene;
 	
-	public static SceneManager getInstance() {
-		
-		if(sceneManager == null){
-			sceneManager = new SceneManager();
-		}
-		
-		return sceneManager;
-	}
+//	public static SceneManager getInstance() {
+//		
+//		if(sceneManager == null){
+//			sceneManager = new SceneManager();
+//		}
+//		
+//		return sceneManager;
+//	}
 	
 	public void setStage(Stage stage){
 		primaryStage = stage;

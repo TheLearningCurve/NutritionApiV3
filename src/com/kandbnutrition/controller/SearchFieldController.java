@@ -63,7 +63,7 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 		stringValues = new StringValues();
 		adapter = new Adapter();
 		typeaHeadtext = FXCollections.observableArrayList();
-		sm = SceneManager.getInstance();
+		sm = SceneManager.INSTANCE;
 		searchFieldText = "Empty String";
 		this.listController = listController;
 		this.mainFrameController = mainFrameController;
