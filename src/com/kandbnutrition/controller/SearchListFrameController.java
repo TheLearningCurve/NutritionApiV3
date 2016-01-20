@@ -5,6 +5,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
+import com.kandbnutrition.model.DetailData;
 import com.kandbnutrition.resource.ErrorMessages;
 import com.kandbnutrition.resource.StringValues;
 import com.kandbnutrition.service.QueryVariables;
@@ -12,61 +13,56 @@ import com.kandbnutrition.service.QueryVariables;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.event.EventHandler;
+import javafx.util.Callback;
 
 
 public class SearchListFrameController extends AnchorPane implements Initializable {
+	
 	@FXML
 	AnchorPane leftPanel;
 	
 	@FXML
-	VBox ButtonListContainer;
+	ListView<DetailData> listView;
 	
 	@FXML
 	Label resultLabel, buttonLabel, ErrorMessageLabel;
 	
-	@FXML 
-	ScrollPane ListContainerScrollPane;
-	
 	@FXML
 	ImageView progressIndicatorImageView;
 	
-	
-	private final ExpandedLabelController expandedLabelController;
-	private SingleLabelController singleLabelController;
+	private MainFrameController	mainFrameController;
 	private SearchFieldController searchFieldController;
 	private NutritionLabelFrameController nutritionLabelFrameController;
 	
 	private StringValues stringValues;
 	private ErrorMessages errorMessages;
 	
-	private int previousIndex = -1;
-	private int ResponseListSize;
-	
-	private Node previousItem;
-	
+	public ObservableList<DetailData> detailList;
+
 	public static SearchListFrameController controller;	
 	
 	public SearchListFrameController(NutritionLabelFrameController nutritionLabelFrameController, MainFrameController mainFrameController) {
 		
+		detailList = FXCollections.observableArrayList();
 		errorMessages = new ErrorMessages();
 		stringValues = new StringValues();
 		
+		this.mainFrameController = mainFrameController;
 		this.nutritionLabelFrameController = nutritionLabelFrameController;
-		
-		expandedLabelController = new ExpandedLabelController(this.nutritionLabelFrameController, mainFrameController, this);
-		
+								
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(stringValues.getSearchListFxml()));
 		fxmlLoader.setController(this);
 		fxmlLoader.setRoot(this);
@@ -77,21 +73,7 @@ public class SearchListFrameController extends AnchorPane implements Initializab
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}	
-		
-		ListContainerScrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
 
-			@Override
-			public void changed(ObservableValue<? extends Number> observable,
-					Number oldValue, Number newValue) {		
-					
-				if (newValue.intValue() == 1)
-				{
-					QueryVariables.setOffset(10);
-					searchFieldController.requestSearchData();
-				}
-			}
-		});
-		
 		this.nutritionLabelFrameController.setSearchListFrameController(this);
 	}
 	
@@ -99,56 +81,59 @@ public class SearchListFrameController extends AnchorPane implements Initializab
 		this.searchFieldController = searchFieldController;
 	}
 	
-	public void createListItem(String itemname, String brandname, String nutrientName, float nValue, String nUoM, float sQty, String sUoM, String id, String thumbI) {	
-    	
-		singleLabelController = new SingleLabelController(itemname);
-    	  	
-    	ButtonListContainer.getChildren().add(singleLabelController);	   
-	    
-	    singleLabelController.setOnMousePressed(new EventHandler<MouseEvent>() {
-
-		    @Override
-		    public void handle(MouseEvent  event) {
-		    	
-			    expandedLabelController.updateExpandableCellData(itemname, brandname, nutrientName ,nValue,thumbI,id);
-
-		    	if(previousIndex != -1 ) {
-		        	setItem( previousIndex, previousItem );
-		        }
-		    	
-		    	  int currentIndex = getIndexFromEvent(event);
-			      Node currentItem = getItem(currentIndex);
-			      
-			      setItem( currentIndex, expandedLabelController );
-
-		       previousIndex = currentIndex;
-		       previousItem = currentItem;     
-		             
-		       }
-		    });			
-	    
+	public void createListItem(String itemName, String brandName, String nutrientName, Float nValue, String nUoM, Float sQty, String sUoM, String id, String thumbI) {	  		    
+		
+		detailList.add(new DetailData(itemName, brandName, nutrientName, nValue, nUoM, sQty, sUoM, id, thumbI));
+	}
+	
+	/*
+	 * Once the data is completed from the call we can call this method to display the list.
+	 * 
+	 * We switched to using the JavaFX listView which as the recycler built in when using the cellFactory.
+	 */
+	
+	public void displayListView() {
+		
+		
+		listView.setItems(detailList);
 	    setListViewVisible();   
- }
-	
-	private void setItem(int previousIndex, Node previousItem) {
-		ButtonListContainer.getChildren().set(previousIndex, previousItem);	
-	}
-	
-	private int getIndexFromEvent(MouseEvent event) {
-	     return ButtonListContainer.getChildren().indexOf(event.getSource());
-	}
-	
-	private Node getItem(int index) {
-		   return ButtonListContainer.getChildren().get(index);
-	}
+		listView.setCellFactory(new Callback<ListView<DetailData>, ListCell<DetailData>>() {
 			
-	public void setListViewVisible() {
-		ListContainerScrollPane.setVisible(true);
-		setprogressIndicatorImageView_NotVisible();
+			@Override
+			public ListCell<DetailData> call(ListView<DetailData> param) {
+				return new CustomSearchCell();
+			}
+		});
+		
+		/*
+		 * This was the only way I could find to access the scroll bar for the listView. 
+		 * onScroll has never worked for some strange reason. 
+		 * 
+		 * We listen for the scroll value to hit the bottom and make the next call for search (offset) 
+		 */
+		
+		for (Node node: listView.lookupAll(".scroll-bar")) {
+		      if (node instanceof ScrollBar) {
+		        final ScrollBar bar = (ScrollBar) node;
+		        bar.valueProperty().addListener(new ChangeListener<Number>() {
+		          @Override public void changed(ObservableValue<? extends Number> value, Number oldValue, Number newValue) {
+		        	  		        	  
+		        	  /*
+		        	   * Once the scroll bar reaches the end we make the call to get the next set of items
+		        	   */
+		        	  if(newValue.doubleValue() == 1.0 ) {
+		        		  QueryVariables.setOffset(10);
+						  searchFieldController.requestSearchData();
+		        	  }
+		          }
+		        });
+		      }
+		}
 	}
-	 
-	public void setResponseListSize(int ResponseListSize) {
-		this.ResponseListSize = ResponseListSize;
+		
+	public void setListViewVisible() {
+		listView.setVisible(true);
+		setprogressIndicatorImageView_NotVisible();
 	}
 	
 	@Override
@@ -167,10 +152,6 @@ public class SearchListFrameController extends AnchorPane implements Initializab
 					resultLabel.setVisible(true);
 			}
 		});
-	}
-	
-	public void setPreviousIndex(int previousIndex) {
-		this.previousIndex = previousIndex;
 	}
 	
 	public void setprogressIndicatorImageViewVisible() {

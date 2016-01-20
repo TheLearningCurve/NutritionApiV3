@@ -1,109 +1,57 @@
-package com.kandbnutrition.controller;
+package com.kandbnutrition.resource;
 
-import java.io.IOException;
-import java.net.URL;
+/*
+ * Create by Kyle Wolff 1/19/2016
+ * 
+ * The NutritionLabelData is the class for making the call to retrieve the nutrition label data
+ * and build the HTML doc using our custom HTML builder 
+ */
+
 import java.text.DecimalFormat;
-import java.util.ResourceBundle;
 
+import com.kandbnutrition.controller.NutritionLabelFrameController;
+import com.kandbnutrition.controller.SearchListFrameController;
 import com.kandbnutrition.handler.SceneManager;
 import com.kandbnutrition.model.ItemData;
 import com.kandbnutrition.model.NutrientStrings;
 import com.kandbnutrition.model.Nutrients;
 import com.kandbnutrition.nutritionLabelHTML.HTMLBuilder;
-import com.kandbnutrition.resource.StringValues;
 import com.kandbnutrition.service.Adapter;
 import com.kandbnutrition.service.QueryVariables;
 
+import javafx.application.Platform;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 
-public class ExpandedLabelController extends AnchorPane implements Initializable {
-
-	@FXML
-	Label calorieLabel, ItemNameLabel, BrandNameLabel;
-
-	@FXML
-	ImageView Thumbnail, NutritionLabelIcon;
-
-	public Tooltip tooltip;
-	public Adapter adapter;
+public class NutritionLabelData {
+	
 	private NutrientStrings nutrientStrings;
-	private StringValues stringValues;
+	private SceneManager sceneManager;
 	private DecimalFormat df;
-	public NutritionLabelFrameController nutritionLabelFrameController;
-	public SearchListFrameController searchListcontroller;
-	public SceneManager sm;
-
-	public ExpandedLabelController(NutritionLabelFrameController nutritionLabelFrameController, MainFrameController mainFrameController, SearchListFrameController controller) {
-		this.nutritionLabelFrameController = nutritionLabelFrameController;
-		searchListcontroller = controller;
-		stringValues = new StringValues();
+	private Adapter adapter;
+	private SearchListFrameController searchListFrameController;
+	private NutritionLabelFrameController nutritionLabelFrameController;
+	
+	public NutritionLabelData() {
+		
+		sceneManager = SceneManager.INSTANCE;
+		
 		df = new DecimalFormat("#,###.00");
 		nutrientStrings = new NutrientStrings();
 		adapter = new Adapter();
-		tooltip = new Tooltip();
-
-		sm = SceneManager.INSTANCE;
-
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(stringValues.getExpandedLabelFxml()));
-		fxmlLoader.setController(this);
-		fxmlLoader.setRoot(this);
-
-		try {
-			fxmlLoader.load();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-
-		ItemNameLabel.setTooltip(tooltip);
-
-		NutritionLabelIcon.setOnMousePressed(new EventHandler < MouseEvent > () {
-
-			@Override
-			public void handle(MouseEvent mousevent) {
-
-				mainFrameController.setNutritionLabel(.5, true);
-			}
-		});
-
+		
+		searchListFrameController = sceneManager.getMainFrameController().searchListFrameController;
+		nutritionLabelFrameController = sceneManager.getMainFrameController().nutritionLabelFrameController;
 	}
-
-	public void updateExpandableCellData(String ItemNameLabel, String BrandNameLabel, String nutrientName, Float calorieLabel, String thumbNail, String resourceId) {
-		// Making the call to get the Item Label so the label is populated quicker
-		QueryVariables.setItemId(resourceId);
-		getItem();
-
-		this.calorieLabel.setText(String.valueOf(nutrientName + " " + calorieLabel.intValue()));
-		this.ItemNameLabel.setText(ItemNameLabel);
-		this.BrandNameLabel.setText("From " + BrandNameLabel);
-
-
-		Image i = new Image(thumbNail);
-		if (i.exceptionProperty().getValue() == null) {
-			Thumbnail.setImage(i);
-		}
-
-		tooltip.setText(ItemNameLabel);
-
-	}
-
-	public void getItem() {
-		adapter.getapicalls.itemFacts(QueryVariables.itemId, new Callback < ItemData > () {
+	
+	public void getNutritionLabel() {
+		
+		adapter.getapicalls.itemFacts(QueryVariables.itemId, new Callback <ItemData> () {
 
 			@Override
 			public void success(ItemData itemData, Response response) {
+				
 				HTMLBuilder html = new HTMLBuilder();
 
 				boolean servingPercontainerIsNotZero = String.valueOf(itemData.label.serving.quantity) != null && itemData.label.serving.uom != null && itemData.label.serving.perContainer != 0 && (String.valueOf(itemData.label.serving.metric.qty) + itemData.label.serving.metric.uom) != null;
@@ -155,7 +103,7 @@ public class ExpandedLabelController extends AnchorPane implements Initializable
 
 			@Override
 			public void failure(RetrofitError retrofitError) {
-				searchListcontroller.updateErrorMessageUI(retrofitError.getKind().name());
+				searchListFrameController.updateErrorMessageUI(retrofitError.getKind().name());
 			}
 		});
 	}
@@ -368,13 +316,12 @@ public class ExpandedLabelController extends AnchorPane implements Initializable
 	}
 
 	public void createHtml(HTMLBuilder html) {
-		Platform.runLater(new Runnable() {@Override public void run() {
+		Platform.runLater(new Runnable() {
+			@Override 
+			public void run() {
 				nutritionLabelFrameController.sendHtml(html);
 			}
 		});
 	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {}
 
 }

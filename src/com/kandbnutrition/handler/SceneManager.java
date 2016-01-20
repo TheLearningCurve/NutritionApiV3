@@ -19,18 +19,20 @@ public enum SceneManager {
 		primaryStage = stage;
 	}
 	
-	public void instantiateControllers(){
+	public void instantiateControllers() {
+		
 		mainFrameController = new MainFrameController();
 		
 		mainScene = new Scene(mainFrameController);
 	}
 	
-	public MainFrameController getMainFrameController(){
+	public MainFrameController getMainFrameController() {
 		return mainFrameController;
 	}
 	
 	@DescriptorKey(value = "Need a string. Either (Main) or (SignOn).")
 	public void setScene(String scene){
+		
 		if(scene.compareTo("Main") == 0){
 			primaryStage.setScene(mainScene);
 			primaryStage.centerOnScreen();

@@ -34,8 +34,8 @@ public class NutritionLabelFrameController extends AnchorPane implements Initial
 	
 	public static NutritionLabelFrameController controller;
 
-	public NutritionLabelFrameController(MainFrameController mainFrameController)
-	{
+	public NutritionLabelFrameController(MainFrameController mainFrameController) {
+		
 		stringValues = new StringValues();
 		this.mainFrameController = mainFrameController;
 				
@@ -44,13 +44,9 @@ public class NutritionLabelFrameController extends AnchorPane implements Initial
 		fxmlLoader.setRoot(this);
 		controller = (NutritionLabelFrameController) fxmlLoader.getController();
 		
-		try
-		{
+		try {
 			fxmlLoader.load();
-		}
-		
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}	
 		
@@ -61,13 +57,15 @@ public class NutritionLabelFrameController extends AnchorPane implements Initial
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				mainFrameController.setNutritionLabel(0, false);
+				engine.load("");
 			}
 		});
 	}
 	
-	public void sendHtml(HTMLBuilder html)
-	{
+	public void sendHtml(HTMLBuilder html) {
+		
 		engine.loadContent(html.getHTMLString());
+		mainFrameController.setNutritionLabel(.5, true);
 	}
 	
 	public void setSearchListFrameController(SearchListFrameController searchList) {
@@ -75,7 +73,5 @@ public class NutritionLabelFrameController extends AnchorPane implements Initial
 	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {		
-		
-	}
+	public void initialize(URL arg0, ResourceBundle arg1) {}
 }

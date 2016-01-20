@@ -26,7 +26,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -123,11 +122,11 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 			QueryVariables.setSearchTerm(listView.getSelectionModel().getSelectedItem());
 			searchField.setText(listView.getSelectionModel().getSelectedItem());
 			
-			if(listController.ButtonListContainer.getChildren().isEmpty() && searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty())
+			if(listController.listView.getItems().isEmpty() && searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty())
 			{
 				FirstSearchCall();
 			}
-			else if(!listController.ButtonListContainer.getChildren().isEmpty() && 
+			else if(!listController.listView.getItems().isEmpty() && 
 					listView.getSelectionModel().getSelectedItem().compareTo(searchFieldText) != 0)
 			{
 				ClearListSearchCall();
@@ -147,11 +146,11 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 	{
 		QueryVariables.setSearchTerm(searchField.getText());
 		
-		if(listController.ButtonListContainer.getChildren().isEmpty() && searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty())
+		if(listController.listView.getItems().isEmpty() && searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty())
 		{
 			FirstSearchCall();
 		}
-		else if(!listController.ButtonListContainer.getChildren().isEmpty() && searchField.getText().compareTo(searchFieldText) != 0
+		else if(!listController.listView.getItems().isEmpty() && searchField.getText().compareTo(searchFieldText) != 0
 				&& searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty())
 		{
 			ClearListSearchCall();
@@ -181,7 +180,7 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 	{
 		QueryVariables.clearOffset();
 		listController.setErrorMessageUI_NotVisible();
-		listController.ButtonListContainer.getChildren().clear();
+		listController.listView.getItems().clear();
 		requestSearchData();
 		setListViewVisibleFalse();
 		rememberTextField(searchField.getText());
@@ -242,9 +241,7 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 			@Override
 			public void success(final SearchData searchData, Response response) 
 			{				
-				listController.setPreviousIndex(-1);
 				listController.getResultLabel(searchData.total,QueryVariables.searchTerm);
-				listController.setResponseListSize(searchData.results.size());
 				
 				if(!searchData.results.isEmpty())
 				{
@@ -330,6 +327,8 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 					listController.createListItem(results.itemName, results.brandName, results.nutruentName,
 							results.nutrientValue, results.nutrientUom, results.servingQty, results.servingUom, results.resourceId, results.thumbnail);
 				}	
+				
+				listController.displayListView();
 			}
 		});
 	}

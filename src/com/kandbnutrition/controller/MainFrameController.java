@@ -30,6 +30,7 @@ import javafx.util.Duration;
 
 
 public class MainFrameController extends AnchorPane implements Initializable, FxmlHandler {		
+	
 	@FXML
 	Pane dimPane, mainFrameTopContainer, mainRightAnchorPane, mainPaneContainer,
 		optionsAnchorPane,itemListContainer,nutritionLabelDimPane,nutritionLabelContainer;
@@ -53,8 +54,8 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 	
 	private StringValues stringValues;
 	private SearchFieldController searchFieldController;
-	private SearchListFrameController searchListFrameController;	
-	private NutritionLabelFrameController nutritionLabelFrameController;
+	public SearchListFrameController searchListFrameController;	
+	public NutritionLabelFrameController nutritionLabelFrameController;
 	
 	private boolean open = true;
 	private FeatureState featureState = FeatureState.Search;

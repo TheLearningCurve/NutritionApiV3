@@ -1,9 +1,10 @@
 
 .label {
 	-fx-font-family: SansSerif;
+	-fx-text-fill: black;
 }
 
-#SingleTextCell{	
+.hbox {	
 	-fx-border-color: derive(black, 80%);
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );	
 	-fx-border-insets: 0;
@@ -18,39 +19,34 @@
 	-fx-border-width: 1;  
 }
 
-#SingleTextCell:hover {
+.hbox:hover {
 	-fx-background-color: #E0E0E0;
 }
 
-#listContainer {
-	-fx-background-color: white;
-	-fx-border-color:  transparent transparent gray transparent ;
-}
-
-#CalorieLabel {
-	-fx-text-fill: #98FF42;
-	-fx-font-size: 16;	
+#itemNameLabel {
+	-fx-font-size: 14;	
 	-fx-font-weight: bold;
 }
 
-#ItemNameLabel {
+#calorieLabel {
+	-fx-text-fill: #98FF42;
 	-fx-font-size: 14;	
-	-fx-font-weight: bold;	
+	-fx-font-weight: bold;
 }
 
-#BrandNameLabel {
+#brandNameLabel {
 	-fx-font-size: 12;	
 }
 
-#Thumbnail {
+#thumbNailImageView {
 	-fx-image: url("../resource/image/NutritionLogo.png");
 }
 
-#NutritionLabelIcon {
+#nutritionLabelIcon {
 	-fx-image: url("../resource/image/nutritionLabel.png");
 }
 
-#NutritionLabelIcon:hover {
+#nutritionLabelIcon:hover {
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );	
 }
 
