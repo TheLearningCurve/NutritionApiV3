@@ -91,6 +91,10 @@
 	-fx-border-color: white ;
 }
 
+#textFieldAnchorPane {
+	-fx-border-color: black;
+	-fx-border-width: 0px;
+}
 .anchor-pane {
 	-fx-border-color: transparent;
 }

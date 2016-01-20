@@ -25,7 +25,10 @@
          <children>
             <ScrollPane hbarPolicy="NEVER" layoutX="-173.0" layoutY="-120.0" prefHeight="401.0" prefWidth="498.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.rowIndex="1">
               <content>
-                <AnchorPane id="anchor-pane" minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="495.0" styleClass="anchor-pane" />
+                <AnchorPane id="anchor-pane" minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="495.0" styleClass="anchor-pane">
+                     <children>
+                        <Line endX="255.0" layoutX="248.0" layoutY="1.0" startX="-255.0" />
+                     </children></AnchorPane>
               </content>
             </ScrollPane>
             <AnchorPane id="anchor-pane" prefHeight="84.0" prefWidth="498.0" styleClass="anchor-pane" GridPane.rowIndex="2">
@@ -80,7 +83,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="63.0" prefWidth="475.0" styleClass="anchor-pane">
+            <AnchorPane id="textFieldAnchorPane" prefHeight="63.0" prefWidth="475.0" styleClass="anchor-pane">
                <children>
                   <ImageView id="textFieldImage" fitHeight="43.0" fitWidth="360.0" layoutX="99.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="9.0" />
                   <TextField id="textField" alignment="BOTTOM_CENTER" focusTraversable="false" layoutX="151.0" layoutY="11.0" prefHeight="26.0" prefWidth="145.0" promptText="Workout Name" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="11.0" />
