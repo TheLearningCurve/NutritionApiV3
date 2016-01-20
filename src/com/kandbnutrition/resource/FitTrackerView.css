@@ -1,0 +1,94 @@
+
+.anchor-pane {
+	
+	-fx-background-color: white;
+}
+
+.dayOfWeekButtons {
+	
+	-fx-background-color: transparent;
+	-fx-text-fill: white;
+	-fx-font-size: 14;
+	-fx-font-family: "sans-serif";
+	-fx-font-weight: 700;
+}
+
+.scroll-pane .scroll-bar:vertical .track ,
+.scroll-pane .scroll-bar:horizontal .track {
+
+	-fx-background-color: white;
+	-fx-border-color: white;
+}
+
+.scroll-pane .scroll-bar:vertical .increment-button,  
+.scroll-pane .scroll-bar:vertical .decrement-button,
+.scroll-pane .scroll-bar:horizontal .increment-button,  
+.scroll-pane .scroll-bar:horizontal .decrement-button {
+	
+	-fx-background-color: white;
+	-fx-border-color: white;
+	-fx-background-radius: 0em;
+	-fx-padding: 0 10 0 0;
+}
+
+.scroll-pane .scroll-bar:vertical .increment-arrow,  
+.scroll-pane .scroll-bar:vertical .decrement-arrow,
+.scroll-pane .scroll-bar:horizontal .increment-arrow,  
+.scroll-pane .scroll-bar:horizontal .decrement-arrow {
+	
+	-fx-shape: " ";
+	-fx-padding: 1 5 0 0;
+	-fx-background-color: white;
+	-fx-border-color: white;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb,
+.scroll-pane .scroll-bar:horizontal .thumb {
+	-fx-background-color: derive(black,90%);
+}
+
+.scroll-pane .scroll-bar:vertical .thumb:hover,
+.scroll-pane .scroll-bar:horizontal .thumb {
+	-fx-background-color: derive(black,50%);
+}
+
+.scroll-pane {
+	-fx-border-color: transparent;
+}
+
+#textField {
+	
+	-fx-background-color: transparent;
+	-fx-font-weight: bold;
+	-fx-font-size: 16;
+	-fx-font-family: "san-serif";
+}
+
+#textFieldImage {
+	
+	-fx-image: url("../resource/image/textField.PNG");
+}
+
+#addExerciseButton {
+	
+	-fx-background-color: white;
+	-fx-font-size: 14;
+	-fx-font-family: "sans-serif";
+	-fx-font-weight: 700;
+}
+
+#weekdayHbox, #hBoxAnchorPane {
+	
+	-fx-background-color: #76FF03;
+}
+
+.vBox , .scroll-pane, #anchor-pane, .grid-pane{
+	-fx-border-color: white ;
+}
+
+.anchor-pane {
+	-fx-border-color: transparent;
+}
+
+
+
