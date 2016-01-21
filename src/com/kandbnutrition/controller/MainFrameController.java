@@ -33,7 +33,7 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 	
 	@FXML
 	Pane dimPane, mainFrameTopContainer, mainRightAnchorPane, mainPaneContainer,
-		optionsAnchorPane,itemListContainer,nutritionLabelDimPane,nutritionLabelContainer;
+		optionsAnchorPane,nutritionLabelDimPane,nutritionLabelContainer;
 	@FXML
 	SplitPane navMenuSplitPane;
 	
@@ -50,10 +50,11 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 	Button navMenuButton;
 	
 	@FXML
-	HBox searchIconHBox, macroCalculatorHBox, fitTrackerHBox, logoutHBox;
+	HBox searchIconHBox, macroCalculatorHBox, fitTrackerHBox, logoutHBox, itemListContainer;
 	
 	private StringValues stringValues;
 	private SearchFieldController searchFieldController;
+	private FitTrackerController fitTrackerController;
 	public SearchListFrameController searchListFrameController;	
 	public NutritionLabelFrameController nutritionLabelFrameController;
 	
@@ -65,6 +66,7 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 	
 	public MainFrameController() {
 		
+		fitTrackerController = new FitTrackerController();
 		nutritionLabelFrameController = new NutritionLabelFrameController(this);
 		searchListFrameController = new SearchListFrameController(nutritionLabelFrameController, this);
 		searchFieldController = new SearchFieldController(searchListFrameController, this);
@@ -198,6 +200,8 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 			
 			optionsAnchorPane.setVisible(true);
 			
+			largeLogo.setVisible(true);
+			
 			if(!optionsAnchorPane.getChildren().contains(searchFieldController)) {
 				optionsAnchorPane.getChildren().add(searchFieldController);
 			}
@@ -211,6 +215,10 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 			}
 						
 		} else if(featureState == FeatureState.FitTracker) {
+			
+			if(!itemListContainer.getChildren().contains(fitTrackerController)){
+				itemListContainer.getChildren().add(fitTrackerController);
+			}
 			
 		} else if(featureState == FeatureState.Macro) {
 			
@@ -240,6 +248,7 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 	public void removeFxml() {
 		
 		optionsAnchorPane.setVisible(false);
+		largeLogo.setVisible(false);
 		itemListContainer.getChildren().clear();
 	}
 }
