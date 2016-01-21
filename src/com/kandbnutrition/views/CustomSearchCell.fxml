@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<HBox id="SingleTextCell" fx:id="hBox" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="400.0" styleClass="hbox" stylesheets="@../resource/CustomCell.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+         <children>
+      <AnchorPane>
+         <children>
+            <GridPane hgap="4.0" layoutX="10.0" layoutY="5.0" prefHeight="33.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="91.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="200.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="99.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <VBox prefHeight="33.0" prefWidth="233.0" GridPane.columnIndex="1">
+                     <children>
+                              <Label id="itemNameLabel" fx:id="itemNameLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="5.0" mouseTransparent="true" prefHeight="19.0" prefWidth="384.0" text="Label" wrapText="true" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                        <Label id="brandNameLabel" fx:id="brandNameLabel" alignment="TOP_LEFT" mouseTransparent="true" prefHeight="19.0" prefWidth="384.0" text="Label" visible="false" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <children>
+                        <ImageView id="thumbNailImageView" fx:id="thumbNailImageView" fitHeight="30.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" visible="false" HBox.hgrow="SOMETIMES" />
+                     </children>
+                  </HBox>
+                  <VBox alignment="BASELINE_CENTER" prefHeight="59.0" prefWidth="141.0" GridPane.columnIndex="2">
+                     <children>
+                        <Label id="calorieLabel" fx:id="caloireLabel" prefHeight="18.0" prefWidth="124.0" text="Label" textAlignment="CENTER" visible="false" wrapText="true">
+                           <VBox.margin>
+                              <Insets bottom="-5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ImageView id="nutritionLabelIcon" fx:id="nutritionLabelIcon" fitHeight="16.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="2">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+         </children>
+</HBox>
