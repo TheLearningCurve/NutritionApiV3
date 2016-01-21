@@ -112,9 +112,7 @@
                                         		
                                           <Pane fx:id="mainPaneContainer" prefHeight="481.0" prefWidth="825.0">
                                             <children>
-                                              <!-- Created by Brandon VanderMeyf May 20 2015 -->
-
-											  <Pane id="itemListContainer" fx:id="itemListContainer" layoutX="200" prefHeight="450.0" prefWidth="412.0" />
+                                    <HBox id="itemListContainer" fx:id="itemListContainer" alignment="CENTER" prefHeight="479.0" prefWidth="824.0" />
                                               
                                               <ImageView id="largeLogo" fx:id="largeLogo" fitHeight="364.0" fitWidth="370.0" layoutX="225.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
                                       

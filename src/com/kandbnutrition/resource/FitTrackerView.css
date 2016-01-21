@@ -18,47 +18,44 @@
 	-fx-font-weight: 700;
 }
 
-.scroll-pane .scroll-bar:vertical .track ,
-.scroll-pane .scroll-bar:horizontal .track {
-
-	-fx-background-color: white;
-	-fx-border-color: white;
+.dayOfWeekButtons:hover {
+	-fx-text-fill: #737373;
 }
 
-.scroll-pane .scroll-bar:vertical .increment-button,  
-.scroll-pane .scroll-bar:vertical .decrement-button,
-.scroll-pane .scroll-bar:horizontal .increment-button,  
-.scroll-pane .scroll-bar:horizontal .decrement-button {
-	
+.list-view .list-cell:filled:selected {
 	-fx-background-color: white;
-	-fx-border-color: white;
+}
+
+.list-view {
+	-fx-background-color: white;
+	-fx-border-color:  transparent;
+}
+
+.list-view .scroll-bar:vertical .increment-button,  
+.list-view .scroll-bar:vertical .decrement-button {
+	-fx-background-color: white;
 	-fx-background-radius: 0em;
 	-fx-padding: 0 10 0 0;
 }
 
-.scroll-pane .scroll-bar:vertical .increment-arrow,  
-.scroll-pane .scroll-bar:vertical .decrement-arrow,
-.scroll-pane .scroll-bar:horizontal .increment-arrow,  
-.scroll-pane .scroll-bar:horizontal .decrement-arrow {
-	
-	-fx-shape: " ";
-	-fx-padding: 1 5 0 0;
-	-fx-background-color: white;
-	-fx-border-color: white;
+.list-view .scroll-bar:vertical .track {
+	-fx-background-color: #F9F9F9;
+	-fx-border-color: transparent;
 }
 
-.scroll-pane .scroll-bar:vertical .thumb,
-.scroll-pane .scroll-bar:horizontal .thumb {
+.list-view .scroll-bar:vertical .increment-arrow,  
+.list-view .scroll-bar:vertical .decrement-arrow {
+	-fx-shape: " ";
+	-fx-padding: 1 5 0 0;
+	
+}
+
+.list-view .scroll-bar:vertical .thumb {
 	-fx-background-color: derive(black,90%);
 }
 
-.scroll-pane .scroll-bar:vertical .thumb:hover,
-.scroll-pane .scroll-bar:horizontal .thumb {
+.list-view .scroll-bar:vertical .thumb:hover {
 	-fx-background-color: derive(black,50%);
-}
-
-.scroll-pane {
-	-fx-border-color: transparent;
 }
 
 #textField {
@@ -80,6 +77,10 @@
 	-fx-font-size: 14;
 	-fx-font-family: "sans-serif";
 	-fx-font-weight: 700;
+}
+
+#addExerciseButton:hover {
+	-fx-text-fill: #76FF03;
 }
 
 #weekdayHbox, #hBoxAnchorPane {
