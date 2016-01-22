@@ -168,24 +168,24 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 	
 	public void FirstSearchCall()
 	{
-		listController.setErrorMessageUI_NotVisible();
+		listController.setErrorMessageVisible(false);
 		requestSearchData();
 		rememberTextField(searchField.getText());	
 		mainFrameController.setLargeLogoImage(false);
-		listController.setprogressIndicatorImageViewVisible();
+		listController.setprogressIndicatorVisible(true);
 		setListViewVisibleFalse();
 	}
 	
 	public void ClearListSearchCall()
 	{
 		QueryVariables.clearOffset();
-		listController.setErrorMessageUI_NotVisible();
+		listController.setErrorMessageVisible(false);
 		listController.listView.getItems().clear();
 		requestSearchData();
 		setListViewVisibleFalse();
 		rememberTextField(searchField.getText());
 		mainFrameController.setLargeLogoImage(false);
-		listController.setprogressIndicatorImageViewVisible();
+		listController.setprogressIndicatorVisible(true);
 	}
 	
 	protected void rememberTextField(String string) {
@@ -249,7 +249,8 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 				}
 				else 
 				{
-					listController.setprogressIndicatorImageView_NotVisible();
+					listController.setprogressIndicatorVisible(false);
+
 				}
 
 				
@@ -331,5 +332,10 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 				listController.displayListView();
 			}
 		});
+	}
+
+	public void reset() {
+		listView.getItems().clear();
+		searchField.clear();
 	}
 }
