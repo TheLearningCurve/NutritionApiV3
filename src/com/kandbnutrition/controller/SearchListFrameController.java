@@ -96,7 +96,7 @@ public class SearchListFrameController extends AnchorPane implements Initializab
 		
 		
 		listView.setItems(detailList);
-	    setListViewVisible();   
+	    setListViewVisible(true);   
 		listView.setCellFactory(new Callback<ListView<DetailData>, ListCell<DetailData>>() {
 			
 			@Override
@@ -131,9 +131,10 @@ public class SearchListFrameController extends AnchorPane implements Initializab
 		}
 	}
 		
-	public void setListViewVisible() {
-		listView.setVisible(true);
-		setprogressIndicatorImageView_NotVisible();
+	public void setListViewVisible(boolean visible) {
+		
+		listView.setVisible(visible);
+		setprogressIndicatorVisible(false);
 	}
 	
 	@Override
@@ -149,25 +150,25 @@ public class SearchListFrameController extends AnchorPane implements Initializab
 				DecimalFormat df = new DecimalFormat("#,###");
 
 					resultLabel.setText(String.valueOf(df.format(total)) + " Results for " + searchTerm);
-					resultLabel.setVisible(true);
+					setResultLabelVisible(true);
 			}
 		});
 	}
 	
-	public void setprogressIndicatorImageViewVisible() {
-		progressIndicatorImageView.setVisible(true);
+	public void setResultLabelVisible(boolean visible) {
+		resultLabel.setVisible(visible);
 	}
 	
-	public void setprogressIndicatorImageView_NotVisible() {
-		progressIndicatorImageView.setVisible(false);
+	public void setprogressIndicatorVisible(boolean visible) {
+		progressIndicatorImageView.setVisible(visible);
 	}
 	
 	public void setErrorMessageLabel(String error) {
 		ErrorMessageLabel.setText(error);
 	}
 	
-	public void setErrorMessageUI_NotVisible() {
-		ErrorMessageLabel.setVisible(false);
+	public void setErrorMessageVisible(boolean visible) {
+		ErrorMessageLabel.setVisible(visible);
 	}
 
 	public void updateErrorMessageUI(String errorMessage) {
@@ -178,12 +179,25 @@ public class SearchListFrameController extends AnchorPane implements Initializab
 			public void run() {
 				
 				if(errorMessage == "NETWORK") {
-					resultLabel.setVisible(false);
+					setResultLabelVisible(false);
 					ErrorMessageLabel.setText(errorMessage + errorMessages.getNetworkError());
-					ErrorMessageLabel.setVisible(true);
-					setprogressIndicatorImageView_NotVisible();
+					setErrorMessageVisible(true);
+					setprogressIndicatorVisible(false);
 				}					
 			}
 		});
-	}		
+	}	
+	
+	/*
+	 * Reset method for when we change features
+	 */
+	
+	public void reset() {
+		
+		listView.getItems().clear();
+		searchFieldController.reset();
+		setListViewVisible(false);
+		setResultLabelVisible(false);
+		resultLabel.setText("");
+	}
 }

@@ -250,6 +250,7 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 		optionsAnchorPane.setVisible(false);
 		largeLogo.setVisible(false);
 		itemListContainer.getChildren().clear();
+		searchListFrameController.reset();
 	}
 }
 
