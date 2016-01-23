@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
@@ -12,19 +13,23 @@
 
 <!--  Created by Kyle Wolff May 13 2015 -->
 
-<fx:root id="searchFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="343.0"  stylesheets="@../resource/SearchField.css" type="javafx.scene.layout.AnchorPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="343.0" styleClass="standard-background" type="javafx.scene.layout.AnchorPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<children>	
 		<AnchorPane id="searchAnchorPane" layoutX="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="326.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="5.0">
 			<children>
-      			<TextField id="searchField" fx:id="searchField" focusTraversable="false" layoutY="1.0" prefHeight="33.0" prefWidth="335.0" promptText="Search For Food" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0" />
+      			<TextField id="searchField" fx:id="searchField" focusTraversable="false" layoutY="1.0" prefHeight="33.0" prefWidth="335.0" promptText="Search For Food" styleClass="standard-primary-text" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0" />
             <HBox id="HBoxContainerForListView" fx:id="HBoxContainerForListView" layoutY="34.0" prefHeight="33.0" prefWidth="334.0">
                <children>
-            		<ListView id="listView" fx:id="listView" centerShape="false" onMousePressed="#searchMouseListener" prefHeight="18.0" prefWidth="334.0" visible="false" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="33.0" />
+            		<ListView id="listView" fx:id="listView" centerShape="false" onMousePressed="#searchMouseListener" prefHeight="18.0" prefWidth="334.0" styleClass="standard-hover-text-action" visible="false" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="33.0" />
                </children>
             </HBox>
             <TextField id="searchFieldErrorMessgae" fx:id="searchFieldErrorMessgae" editable="false" layoutX="114.0" layoutY="26.0" prefHeight="34.0" prefWidth="174.0" text="Please Enter in a search term" visible="false" />
-				<ImageView id="searchButton" fx:id="searchButton" onMousePressed="#searchMouseListener" fitHeight="31.0" fitWidth="47.0" layoutX="288.0" layoutY="2.0" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="2.0"/>
+				<ImageView id="searchButton" fx:id="searchButton" fitHeight="31.0" fitWidth="47.0" layoutX="288.0" layoutY="2.0" onMousePressed="#searchMouseListener" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="2.0" />
 			</children>
 		</AnchorPane>
 	</children>
+   <stylesheets>
+      <URL value="@../resource/SearchField.css" />
+      <URL value="@../resource/GlobalStyleSheet.css" />
+   </stylesheets>
 </fx:root>

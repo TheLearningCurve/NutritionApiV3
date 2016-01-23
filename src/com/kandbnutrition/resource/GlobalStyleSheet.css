@@ -1,0 +1,85 @@
+/*
+ * Created by Kyle Wolff 1/22/2016
+ * 
+ * This sheet will have the standard style needed for the program 
+ */
+ 
+.standard-background {
+ 	-fx-background-color: #8BC34A;
+}
+ 
+.standard-hover-text-action:hover {
+ 	-fx-text-fill: #76FF03;
+}
+
+.standard-background-hover {
+	-fx-background-color: #76FF03;
+}
+ 
+.standard-primary-text {
+ 	-fx-text-fill: #212121;
+ 	-fx-font-size: 14;
+	-fx-font-family: 'sans-serif';
+}
+
+.standard-secondary-text {
+	-fx-text-fill: #727272;
+	-fx-font-size: 14;
+	-fx-font-family: 'sans-serif';
+}
+
+.standard-error-text {
+	-fx-text-fill: red;
+}
+
+.standard-dropshadow-effect {
+	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );	
+}
+
+.list-cell {
+	-fx-background-color: white;
+}
+
+.list-cell:filled:hover{
+	-fx-text-fill: #76FF03;
+}
+
+.list-view {
+	-fx-background-color: white;
+	-fx-border-color:  transparent;
+}
+
+.list-view .scroll-bar:vertical .increment-button,  
+.list-view .scroll-bar:vertical .decrement-button,
+.list-view .scroll-bar:horizontal .incremen-button,
+.list-view .scroll-bar:horizontal .decrement-button {
+	-fx-background-color: transparent;
+	-fx-background-radius: 0em;
+	-fx-padding: 0 10 0 0;
+}
+
+.list-view .scroll-bar:vertical .track, 
+.list-view .scroll-bar:horizontal .track{
+	-fx-background-color: white;
+	-fx-border-color: transparent;
+}
+
+.list-view .scroll-bar:vertical .increment-arrow,  
+.list-view .scroll-bar:vertical .decrement-arrow,
+.list-view .scroll-bar:horizontal .increment-arrow,
+.list-view .scroll-bar:horizontal .decrement-arrow{
+	-fx-shape: " ";
+	-fx-padding: 1 5 0 0;
+}
+
+.list-view .scroll-bar:vertical .thumb {
+	-fx-background-color: derive(black,90%);
+}
+
+.list-view .scroll-bar:horizontal .thumb {
+	-fx-background-color: transparent;
+}
+
+.list-view .scroll-bar:vertical .thumb:hover {
+	-fx-background-color: derive(black,50%);
+}

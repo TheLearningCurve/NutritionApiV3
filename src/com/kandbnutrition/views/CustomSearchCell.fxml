@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<HBox id="SingleTextCell" fx:id="hBox" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="400.0" styleClass="hbox" stylesheets="@../resource/CustomCell.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="hBox" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
          <children>
       <AnchorPane>
          <children>
@@ -26,8 +27,8 @@
                <children>
                   <VBox prefHeight="33.0" prefWidth="233.0" GridPane.columnIndex="1">
                      <children>
-                              <Label id="itemNameLabel" fx:id="itemNameLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="5.0" mouseTransparent="true" prefHeight="19.0" prefWidth="384.0" text="Label" wrapText="true" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
-                        <Label id="brandNameLabel" fx:id="brandNameLabel" alignment="TOP_LEFT" mouseTransparent="true" prefHeight="19.0" prefWidth="384.0" text="Label" visible="false" wrapText="true" />
+                              <Label id="itemNameLabel" fx:id="itemNameLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="5.0" mouseTransparent="true" prefHeight="19.0" prefWidth="384.0" styleClass="standard-primary-text" text="Label" wrapText="true" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                        <Label id="brandNameLabel" fx:id="brandNameLabel" alignment="TOP_LEFT" mouseTransparent="true" prefHeight="19.0" prefWidth="384.0" styleClass="standard-secondary-text" text="Label" visible="false" wrapText="true" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -37,7 +38,7 @@
                   </HBox>
                   <VBox alignment="BASELINE_CENTER" prefHeight="59.0" prefWidth="141.0" GridPane.columnIndex="2">
                      <children>
-                        <Label id="calorieLabel" fx:id="caloireLabel" prefHeight="18.0" prefWidth="124.0" text="Label" textAlignment="CENTER" visible="false" wrapText="true">
+                        <Label id="calorieLabel" fx:id="caloireLabel" prefHeight="18.0" prefWidth="124.0" styleClass="standard-primary-text" text="Label" textAlignment="CENTER" visible="false" wrapText="true">
                            <VBox.margin>
                               <Insets bottom="-5.0" />
                            </VBox.margin>
@@ -54,4 +55,12 @@
          </children>
       </AnchorPane>
          </children>
+   <stylesheets>
+      <URL value="@../resource/CustomCell.css" />
+      <URL value="@../resource/GlobalStyleSheet.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="standard-dropshadow-effect" />
+      <String fx:value="hbox" />
+   </styleClass>
 </HBox>
