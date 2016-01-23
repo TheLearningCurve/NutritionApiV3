@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<fx:root prefHeight="495.0" prefWidth="500.0" stylesheets="@../resource/FitTrackerView.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="495.0" prefWidth="565.0" stylesheets="@../resource/FitTrackerView.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane prefHeight="506.0" prefWidth="500.0" styleClass="grid-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -77,12 +77,12 @@
             </AnchorPane>
             <AnchorPane id="textFieldAnchorPane" prefHeight="63.0" prefWidth="475.0" styleClass="anchor-pane">
                <children>
-                  <ImageView id="textFieldImage" fitHeight="43.0" fitWidth="360.0" layoutX="99.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="84.0" AnchorPane.topAnchor="9.0" />
+                  <ImageView id="textFieldImage" fitHeight="43.0" fitWidth="291.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="9.0" />
                   <TextField id="textField" fx:id="workoutTextField" alignment="BOTTOM_CENTER" focusTraversable="false" layoutX="151.0" layoutY="11.0" prefHeight="26.0" prefWidth="145.0" promptText="Workout Name" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="11.0" />
-                  <Line endX="260.0" layoutX="233.0" layoutY="59.0" startX="-230.0" />
+                  <Line endX="325.0" layoutX="233.0" layoutY="59.0" startX="-235.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
-            <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" styleClass="list-view" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

@@ -9,7 +9,7 @@ public class StringValues {
 	private String NUTRITIONLABELFXML		= VIEWPATH + "NutritionLabelFrame.fxml";
 	private String SINGLECELLFXML    		= VIEWPATH + "CustomSearchCell.fxml";
 	private String FITTRACKERVIEWFXML 		= VIEWPATH + "FitTrackerView.fxml";
-	private String CUSTOMFITTRACKERCELLFMXL = VIEWPATH + "CustomFitTrackerCell.fmxml";
+	private String CUSTOMFITTRACKERCELLFMXL = VIEWPATH + "CustomFitTrackerCell.fxml";
 	
 	public String getMainFrameFxml(){
 		return MAINFRAMEFXML;
