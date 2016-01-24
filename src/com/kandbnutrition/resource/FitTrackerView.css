@@ -5,96 +5,35 @@
  */
  
 .anchor-pane {
-	
-	-fx-background-color: white;
-}
-
-.dayOfWeekButtons {
-	
-	-fx-background-color: transparent;
-	-fx-text-fill: white;
-	-fx-font-size: 14;
-	-fx-font-family: "sans-serif";
-	-fx-font-weight: 700;
-}
-
-.dayOfWeekButtons:hover {
-	-fx-text-fill: #737373;
-}
-
-.list-cell {
-	-fx-background-color: white;
-}
-
-.list-view {
-	-fx-background-color: white;
-	-fx-border-color:  transparent;
-}
-
-.list-view .scroll-bar:vertical .increment-button,  
-.list-view .scroll-bar:vertical .decrement-button,
-.list-view .scroll-bar:horizontal .incremen-button,
-.list-view .scroll-bar:horizontal .decrement-button {
-	-fx-background-color: transparent;
-	-fx-background-radius: 0em;
-	-fx-padding: 0 10 0 0;
-}
-
-.list-view .scroll-bar:vertical .track, 
-.list-view .scroll-bar:horizontal .track{
 	-fx-background-color: white;
 	-fx-border-color: transparent;
 }
 
-.list-view .scroll-bar:vertical .increment-arrow,  
-.list-view .scroll-bar:vertical .decrement-arrow,
-.list-view .scroll-bar:horizontal .increment-arrow,
-.list-view .scroll-bar:horizontal .decrement-arrow{
-	-fx-shape: " ";
-	-fx-padding: 1 5 0 0;
-	
-}
-
-.list-view .scroll-bar:vertical .thumb {
-	-fx-background-color: derive(black,90%);
-}
-
-.list-view .scroll-bar:horizontal .thumb {
+#dayOfWeekButtons {
 	-fx-background-color: transparent;
+	-fx-text-fill: white;
+	-fx-font-size: 14;
+	-fx-font-weight: 700;
 }
 
-.list-view .scroll-bar:vertical .thumb:hover {
-	-fx-background-color: derive(black,50%);
+#dayOfWeekButtons:hover {
+	-fx-text-fill: #727272;
 }
 
 #textField {
-	
 	-fx-background-color: transparent;
 	-fx-font-weight: bold;
 	-fx-font-size: 16;
-	-fx-font-family: "san-serif";
 }
 
 #textFieldImage {
-	
 	-fx-image: url("../resource/image/textField.PNG");
 }
 
 #addExerciseButton {
-	
 	-fx-background-color: white;
 	-fx-font-size: 14;
-	-fx-font-family: "sans-serif";
 	-fx-font-weight: 700;
-}
-
-#addExerciseButton:hover {
-	-fx-text-fill: #76FF03;
-}
-
-#weekdayHbox, #hBoxAnchorPane {
-	
-	-fx-background-color: #76FF03;
 }
 
 .vBox , .scroll-pane, #anchor-pane, .grid-pane{
@@ -105,9 +44,3 @@
 	-fx-border-color: black;
 	-fx-border-width: 0px;
 }
-.anchor-pane {
-	-fx-border-color: transparent;
-}
-
-
-

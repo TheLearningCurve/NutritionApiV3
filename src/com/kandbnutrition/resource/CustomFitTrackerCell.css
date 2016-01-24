@@ -10,15 +10,12 @@
 }
 
 .exerciseDataFields {
-	
 	-fx-background-color: white;
 	-fx-border-color: #333333;
 }
 
 #exerciseTextField {
-	
 	-fx-background-color: transparent;
-	-fx-font-family: "san-serif";
 	-fx-font-size: 15;
 	-fx-font-weight: 700;
 }

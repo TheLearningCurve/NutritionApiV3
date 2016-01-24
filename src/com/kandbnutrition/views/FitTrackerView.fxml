@@ -2,6 +2,7 @@
 
 <!-- Created by Kyle Wolff 1/20/2016 This FXL is to for the FitTracker feature  -->
 
+<?import java.net.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<fx:root prefHeight="495.0" prefWidth="565.0" stylesheets="@../resource/FitTrackerView.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="495.0" prefWidth="565.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane prefHeight="506.0" prefWidth="500.0" styleClass="grid-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -27,46 +28,46 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="1.0" layoutY="3.0" prefHeight="61.0" prefWidth="500.0" styleClass="vBox" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="2.0">
                      <children>
-                        <Button id="addExerciseButton" fx:id="addExerciseButton" alignment="TOP_CENTER" mnemonicParsing="false" text="+ Add Exercise" />
-                        <AnchorPane id="hBoxAnchorPane" prefHeight="31.0" prefWidth="515.0">
+                        <Button id="addExerciseButton" fx:id="addExerciseButton" alignment="TOP_CENTER" mnemonicParsing="false" text="+ Add Exercise">
+                           <styleClass>
+                              <String fx:value="standard-primary-text" />
+                              <String fx:value="standard-hover-text-action" />
+                           </styleClass></Button>
+                        <AnchorPane prefHeight="31.0" prefWidth="515.0">
                            <children>
-                              <HBox id="weekdayHbox" alignment="CENTER" prefHeight="31.0" prefWidth="496.0" styleClass="hBox" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                              <HBox id="weekdayHbox" alignment="CENTER" prefHeight="31.0" prefWidth="496.0" styleClass="standard-background" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Button fx:id="sunButton" mnemonicParsing="false" text="SUN">
-                                       <HBox.margin>
-                                          <Insets right="15.0" />
-                                       </HBox.margin>
-                                       <styleClass>
-                                          <String fx:value="dayOfWeekButtons" />
-                                          <String fx:value="button" />
-                                       </styleClass>
-                                    </Button>
-                                    <Button fx:id="monButton" mnemonicParsing="false" styleClass="dayOfWeekButtons" text="MON">
+                                    <Button id="dayOfWeekButtons" fx:id="sunButton" mnemonicParsing="false" styleClass="standard-primary-text" text="SUN">
                                        <HBox.margin>
                                           <Insets right="15.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button fx:id="tuesButton" mnemonicParsing="false" styleClass="dayOfWeekButtons" text="TUES">
+                                    <Button id="dayOfWeekButtons" fx:id="monButton" mnemonicParsing="false" styleClass="standard-primary-text" text="MON">
                                        <HBox.margin>
                                           <Insets right="15.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button fx:id="wedButton" mnemonicParsing="false" styleClass="dayOfWeekButtons" text="WED">
+                                    <Button id="dayOfWeekButtons" fx:id="tuesButton" mnemonicParsing="false" styleClass="standard-primary-text" text="TUES">
                                        <HBox.margin>
                                           <Insets right="15.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button fx:id="thursButton" mnemonicParsing="false" styleClass="dayOfWeekButtons" text="THURS">
+                                    <Button id="dayOfWeekButtons" fx:id="wedButton" mnemonicParsing="false" styleClass="standard-primary-text" text="WED">
                                        <HBox.margin>
                                           <Insets right="15.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button fx:id="friButton" mnemonicParsing="false" styleClass="dayOfWeekButtons" text="FRI">
+                                    <Button id="dayOfWeekButtons" fx:id="thursButton" mnemonicParsing="false" styleClass="standard-primary-text" text="THURS">
                                        <HBox.margin>
                                           <Insets right="15.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button fx:id="satButton" mnemonicParsing="false" styleClass="dayOfWeekButtons" text="SAT" />
+                                    <Button id="dayOfWeekButtons" fx:id="friButton" mnemonicParsing="false" styleClass="standard-primary-text" text="FRI">
+                                       <HBox.margin>
+                                          <Insets right="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button id="dayOfWeekButtons" fx:id="satButton" mnemonicParsing="false" styleClass="standard-primary-text" text="SAT" />
                                  </children>
                               </HBox>
                            </children>
@@ -78,7 +79,7 @@
             <AnchorPane id="textFieldAnchorPane" prefHeight="63.0" prefWidth="475.0" styleClass="anchor-pane">
                <children>
                   <ImageView id="textFieldImage" fitHeight="43.0" fitWidth="291.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="9.0" />
-                  <TextField id="textField" fx:id="workoutTextField" alignment="BOTTOM_CENTER" focusTraversable="false" layoutX="151.0" layoutY="11.0" prefHeight="26.0" prefWidth="145.0" promptText="Workout Name" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="11.0" />
+                  <TextField id="textField" fx:id="workoutTextField" alignment="BOTTOM_CENTER" focusTraversable="false" layoutX="151.0" layoutY="11.0" prefHeight="26.0" prefWidth="145.0" promptText="Workout Name" styleClass="standard-primary-text" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="11.0" />
                   <Line endX="325.0" layoutX="233.0" layoutY="59.0" startX="-235.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
@@ -86,4 +87,8 @@
          </children>
       </GridPane>
    </children>
+   <stylesheets>
+      <URL value="@../resource/FitTrackerView.css" />
+      <URL value="@../resource/GlobalStyleSheet.css" />
+   </stylesheets>
 </fx:root>
