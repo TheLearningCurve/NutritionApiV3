@@ -7,6 +7,9 @@ package com.kandbnutrition.controller;
  */
 
 import java.io.IOException;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
 import com.kandbnutrition.model.DetailData;
 import com.kandbnutrition.resource.CellData;
@@ -39,9 +42,10 @@ public class CustomSearchCell extends ListCell<DetailData> {
 	
 	private StringValues stringValues;
 	private CellData cellData;
-	private Image thumbNailImage;
 	private String resourceId;
 	private NutritionLabelData nutritionLabelData;
+	private boolean isUp;
+
 	
 	public CustomSearchCell() {
 		
@@ -70,6 +74,28 @@ public class CustomSearchCell extends ListCell<DetailData> {
 				}
 			}
 		});
+		
+		/*
+		 * Code for the hover state.
+		 * 
+		 * If the resourceId is the same as the previousSelectedCell then the background should stay white.
+		 */
+		
+		this.hoverProperty().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				
+				if(newValue == true && resourceId == cellData.getResourceId()) {
+					hBox.setStyle("-fx-background-color: white;");
+				}else if(newValue == true) {
+					hBox.setStyle("-fx-background-color: #76FF03;");
+				} else if(newValue == false) {
+					hBox.setStyle("-fx-background-color: white;");
+				} 					
+			}
+		});
+		
 	}
 	
 	/*
@@ -92,6 +118,7 @@ public class CustomSearchCell extends ListCell<DetailData> {
 	
 	protected void expandCell(CustomSearchCell objectClicked) {
 		
+		objectClicked.hBox.setStyle("-fx-background-color: white;");
 		changeCellProperties(objectClicked, hBox.getWidth(), 103, true);
 		setElementVisibilty(true, objectClicked);
 	}
@@ -158,13 +185,51 @@ public class CustomSearchCell extends ListCell<DetailData> {
 	 * Will add the rest of the needed data
 	 */
 	
-	protected void addContenToExpandedCell(String brandName, String calorieName, Float nValue, String thumbNail) {
+	protected void addContenToExpandedCell(CustomSearchCell cell, String brandName, String calorieName, Float nValue, String thumbnail) {
+				
+		cell.brandNameLabel.setText(brandName);	
+		cell.caloireLabel.setText(calorieName + " " + nValue.intValue());	
 		
-		thumbNailImage = new Image(thumbNail);
+		/*
+		 * This checks for empty thumbnail strings as well as internet connection
+		 */
 		
-		brandNameLabel.setText(brandName);	
-		caloireLabel.setText(calorieName + " " + nValue.intValue());	
-		thumbNailImageView.setImage(thumbNailImage);
+		if(thumbnail.isEmpty()) {
+			cell.thumbNailImageView.setImage(new Image("/com/kandbnutrition/resource/image/NutritionLogo.png"));
+		} else
+			try {
+				if(checkInternet()) {	
+					cell.thumbNailImageView.setImage(new Image("/com/kandbnutrition/resource/image/NutritionLogo.png"));
+				} else {
+					cell.thumbNailImageView.setImage(new Image(thumbnail));
+				}
+			} catch (SocketException e) {
+				e.printStackTrace();
+			}
+			
+	}
+	
+	protected boolean checkInternet() throws SocketException {
+		
+		Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+		
+		while (interfaces.hasMoreElements()) {
+			
+			NetworkInterface networkInterface = interfaces.nextElement();
+			
+				try {
+					if (networkInterface.isUp() && !networkInterface.isLoopback()) {
+						isUp = true;
+					} else {
+						isUp = false;
+					}
+
+				} catch (SocketException e) {
+					e.printStackTrace();
+				}
+		}
+			
+		return isUp;
 	}
 	
 	/*
@@ -192,7 +257,7 @@ public class CustomSearchCell extends ListCell<DetailData> {
 		 * Handles the mouse clicks on the cell
 		 */
 		
-		this.setOnMouseReleased( new EventHandler<MouseEvent>() {
+		this.setOnMouseClicked( new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
@@ -209,7 +274,7 @@ public class CustomSearchCell extends ListCell<DetailData> {
 						
 						if(detailData != null) {
 						
-							addContenToExpandedCell(detailData.brandName, detailData.nutrientName, detailData.nutrientValue, detailData.thumbnail);
+							addContenToExpandedCell(objectClicked, detailData.brandName, detailData.nutrientName, detailData.nutrientValue, detailData.thumbnail);
 							expandCell(objectClicked);
 							cellData.setSelectedCell(objectClicked);
 							cellData.setResourceId(objectClicked.resourceId);
@@ -226,11 +291,11 @@ public class CustomSearchCell extends ListCell<DetailData> {
 				 */
 					
 				} else if(cellData.getPreviouslySelectedCell() != objectClicked) {
-															
+								
 					resetCell(cellData.getPreviouslySelectedCell());
 					cellData.setSelectedCell(objectClicked);
 					cellData.setResourceId(objectClicked.resourceId);
-					addContenToExpandedCell(detailData.brandName, detailData.nutrientName, detailData.nutrientValue, detailData.thumbnail);	
+					addContenToExpandedCell(objectClicked, detailData.brandName, detailData.nutrientName, detailData.nutrientValue, detailData.thumbnail);	
 					expandCell(objectClicked);
 					
 				} else {

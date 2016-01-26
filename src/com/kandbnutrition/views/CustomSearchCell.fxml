@@ -10,7 +10,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<HBox id="SingleTextCell" fx:id="hBox" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="400.0" styleClass="hbox" stylesheets="@../resource/CustomCell.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="SingleTextCell" fx:id="hBox" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="400.0" styleClass="hBoxContainer" stylesheets="@../resource/CustomCell.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
          <children>
       <AnchorPane>
          <children>
@@ -30,11 +30,6 @@
                         <Label id="brandNameLabel" fx:id="brandNameLabel" alignment="TOP_LEFT" mouseTransparent="true" prefHeight="19.0" prefWidth="384.0" text="Label" visible="false" wrapText="true" />
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <children>
-                        <ImageView id="thumbNailImageView" fx:id="thumbNailImageView" fitHeight="30.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" visible="false" HBox.hgrow="SOMETIMES" />
-                     </children>
-                  </HBox>
                   <VBox alignment="BASELINE_CENTER" prefHeight="59.0" prefWidth="141.0" GridPane.columnIndex="2">
                      <children>
                         <Label id="calorieLabel" fx:id="caloireLabel" prefHeight="18.0" prefWidth="124.0" text="Label" textAlignment="CENTER" visible="false" wrapText="true">
@@ -49,6 +44,11 @@
                         </ImageView>
                      </children>
                   </VBox>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <ImageView id="thumbNailImageView" fx:id="thumbNailImageView" fitHeight="30.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" visible="false" HBox.hgrow="SOMETIMES" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </children>
