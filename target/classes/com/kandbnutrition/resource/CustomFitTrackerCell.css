@@ -1,0 +1,21 @@
+
+/*
+ * Created by Kyle Wolff 1/20/2016
+ * 
+ * The CustomFitTrackerCell.css will be the style sheet for the CustomFitTrackerCell.fxml
+ */
+ 
+.anchor-pane {
+	-fx-background-color: white;
+}
+
+.exerciseDataFields {
+	-fx-background-color: white;
+	-fx-border-color: #333333;
+}
+
+#exerciseTextField {
+	-fx-background-color: transparent;
+	-fx-font-size: 15;
+	-fx-font-weight: 700;
+}

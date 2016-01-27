@@ -1,0 +1,46 @@
+/*
+ * Created by Kyle Wolff 1/20/2016
+ * 
+ * This CSS is to style the FitTrackerView.fxml 
+ */
+ 
+.anchor-pane {
+	-fx-background-color: white;
+	-fx-border-color: transparent;
+}
+
+#dayOfWeekButtons {
+	-fx-background-color: transparent;
+	-fx-text-fill: white;
+	-fx-font-size: 14;
+	-fx-font-weight: 700;
+}
+
+#dayOfWeekButtons:hover {
+	-fx-text-fill: #727272;
+}
+
+#textField {
+	-fx-background-color: transparent;
+	-fx-font-weight: bold;
+	-fx-font-size: 16;
+}
+
+#textFieldImage {
+	-fx-image: url("../resource/image/textField.PNG");
+}
+
+#addExerciseButton {
+	-fx-background-color: white;
+	-fx-font-size: 14;
+	-fx-font-weight: 700;
+}
+
+.vBox , .scroll-pane, #anchor-pane, .grid-pane{
+	-fx-border-color: white ;
+}
+
+#textFieldAnchorPane {
+	-fx-border-color: black;
+	-fx-border-width: 0px;
+}
