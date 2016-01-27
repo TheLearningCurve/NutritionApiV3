@@ -14,16 +14,15 @@
 	-fx-background-color: black;
 	-fx-opacity: 0;
 }
-#stackPaneAnchorPane, #mainFrameTopContainer{
+#stackPaneAnchorPane {
 	-fx-background-color: #98FF42;
 }
 
 #appTitle {
-	-fx-font-family: 'sans-serif';
 	-fx-font-size: 24px;
 	-fx-font-style: normal;
-	-fx-text-fill: white;
 	-fx-font-weight: 600;
+	-fx-text-fill: white;
 }
 
 #mainPaneContainer, #mainRightAnchorPane {

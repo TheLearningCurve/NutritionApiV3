@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.web.*?>
@@ -10,19 +11,15 @@
 <?import javafx.scene.control.TextField?>
 <?import com.kandbnutrition.controller.*?>
 
-<fx:root id="anchor" fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="412.0" stylesheets="@../resource/SearchListFrameStyle.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="anchor" fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="435.0" prefWidth="441.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-      <Label id="resultsValueLabel" fx:id="resultLabel" alignment="CENTER" layoutX="30.0" layoutY="30.0" prefHeight="17.0" prefWidth="353.0" textAlignment="CENTER" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="30.0" /> 
-      <ScrollPane id="ListContainerScrollPane" fx:id="ListContainerScrollPane" hbarPolicy="NEVER" layoutY="50.0" prefHeight="399.0" prefWidth="412.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-         <content> 
-         <VBox id="ButtonListContainer" fx:id="ButtonListContainer" layoutY="73.0" prefHeight="397.0" prefWidth="411.0">
-            <children>
-         	
-         	</children>
-         </VBox>
-         </content>
-      </ScrollPane>
+      <Label id="resultsValueLabel" fx:id="resultLabel" alignment="CENTER" layoutX="30.0" layoutY="30.0" prefHeight="17.0" prefWidth="353.0" styleClass="standard-primary-text" textAlignment="CENTER" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="30.0" />
+      <ListView fx:id="listView" prefHeight="398.0" prefWidth="500.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
       <ImageView id="progressIndicatorImageView" fx:id="progressIndicatorImageView" fitHeight="37.0" fitWidth="51.0" layoutX="184.0" layoutY="207.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="206.0" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="177.0" AnchorPane.topAnchor="207.0" />
-      <Label id="ErrorMessageLabel" fx:id="ErrorMessageLabel" layoutX="109.0" layoutY="148.0" prefHeight="164.0" prefWidth="213.0" textAlignment="CENTER" visible="false" wrapText="true" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="148.0" />
+      <Label fx:id="ErrorMessageLabel" layoutX="109.0" layoutY="148.0" prefHeight="164.0" prefWidth="213.0" styleClass="standard-error-text" textAlignment="CENTER" visible="false" wrapText="true" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="148.0" />
 	</children>
+   <stylesheets>
+      <URL value="@../resource/SearchListFrameStyle.css" />
+      <URL value="@../resource/GlobalStyleSheet.css" />
+   </stylesheets>
 </fx:root>

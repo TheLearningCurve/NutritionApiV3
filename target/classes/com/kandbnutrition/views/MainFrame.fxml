@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.control.TextField?>
 <?import com.kandbnutrition.controller.*?>
 
-<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="832.0" stylesheets="@../resource/MainFrame.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="832.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
                         <children>
                           <StackPane layoutY="70.0" prefHeight="479.0" prefWidth="832.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                             <children>
@@ -112,9 +113,7 @@
                                         		
                                           <Pane fx:id="mainPaneContainer" prefHeight="481.0" prefWidth="825.0">
                                             <children>
-                                              <!-- Created by Brandon VanderMeyf May 20 2015 -->
-
-											  <Pane id="itemListContainer" fx:id="itemListContainer" layoutX="200" prefHeight="450.0" prefWidth="412.0" />
+                                    <HBox id="itemListContainer" fx:id="itemListContainer" alignment="CENTER" prefHeight="479.0" prefWidth="824.0" />
                                               
                                               <ImageView id="largeLogo" fx:id="largeLogo" fitHeight="364.0" fitWidth="370.0" layoutX="225.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
                                       
@@ -134,10 +133,10 @@
                               </AnchorPane>
                             </children>
                           </StackPane>
-                          <Pane id="mainFrameTopContainer" fx:id="mainFrameTopContainer" prefHeight="71.0" prefWidth="833.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                          <Pane fx:id="mainFrameTopContainer" prefHeight="71.0" prefWidth="833.0" styleClass="standard-background" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                             <children>
                               <Button id="navMenuButton" fx:id="navMenuButton" layoutX="26.0" layoutY="20.0" prefHeight="38.0" prefWidth="38.0" />
-        					  <Label id="appTitle" layoutX="74.0" layoutY="22.0" text="K &amp; B Nutrition" />
+        					  <Label id="appTitle" layoutX="74.0" layoutY="22.0" styleClass="standard-primary-text" text="K &amp; B Nutrition" />
         					     <AnchorPane id="optionsAnchorPane" fx:id="optionsAnchorPane" layoutX="450.0" layoutY="20.0" visible="true"> 
 									<children>
 
@@ -146,4 +145,8 @@
                             </children>
                           </Pane>
                         </children>
+   <stylesheets>
+      <URL value="@../resource/MainFrame.css" />
+      <URL value="@../resource/GlobalStyleSheet.css" />
+   </stylesheets>
                       </fx:root>
