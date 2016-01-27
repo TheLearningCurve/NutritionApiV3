@@ -5,40 +5,42 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.kandbnutrition.animation.DoubleTransition;
+import com.kandbnutrition.animation.FadeTransitionAnimation;
 import com.kandbnutrition.handler.FxmlHandler;
 import com.kandbnutrition.resource.FeatureState;
 import com.kandbnutrition.resource.StringValues;
 
-import javafx.animation.FadeTransition;
-import javafx.beans.property.DoubleProperty;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
-
-
 
 public class MainFrameController extends AnchorPane implements Initializable, FxmlHandler {		
 	
 	@FXML
 	Pane dimPane, mainFrameTopContainer, mainRightAnchorPane, mainPaneContainer,
-		optionsAnchorPane,nutritionLabelDimPane,nutritionLabelContainer;
+		optionsAnchorPane,nutritionLabelDimPane,nutritionLabelContainer, loginPaneContainer;
 	@FXML
 	SplitPane navMenuSplitPane;
 	
 	@FXML
-	AnchorPane navMenu;
+	ScrollPane loginScrollPane;
+	
+	@FXML
+	AnchorPane navMenu, loginAnchorPane;
 	
 	@FXML
 	ProgressIndicator ItemListProgressIndicator;
@@ -47,7 +49,13 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 	ImageView largeLogo;
 	
 	@FXML
-	Button navMenuButton;
+	Button navMenuButton, signInButton, createAccountButton;
+	
+	@FXML
+	TextField emailField;
+	
+	@FXML
+	PasswordField passwordField;
 	
 	@FXML
 	HBox searchIconHBox, macroCalculatorHBox, fitTrackerHBox, logoutHBox, itemListContainer;
@@ -57,6 +65,7 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 	private FitTrackerController fitTrackerController;
 	public SearchListFrameController searchListFrameController;	
 	public NutritionLabelFrameController nutritionLabelFrameController;
+	private FadeTransitionAnimation fadeTransitionAnimation;
 	
 	private boolean open = true;
 	private FeatureState featureState = FeatureState.Search;
@@ -71,6 +80,7 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 		searchListFrameController = new SearchListFrameController(nutritionLabelFrameController, this);
 		searchFieldController = new SearchFieldController(searchListFrameController, this);
 		stringValues = new StringValues();
+		fadeTransitionAnimation = new FadeTransitionAnimation();
 		
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(stringValues.getMainFrameFxml()));
 		fxmlLoader.setRoot(this);
@@ -83,7 +93,14 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 		catch (IOException e){
 			throw new RuntimeException(e);
 		}
-				
+		
+		/*
+		 * Setting the transition objects for validation checks 
+		 */
+		
+		fadeTransitionAnimation.setScrollPane(loginScrollPane);
+		fadeTransitionAnimation.setPane(dimPane);
+	
 		navMenuButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -148,49 +165,100 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 			public void handle(MouseEvent event) {
 				
 				closeMenu();
+				
+				loginScrollPane.setVisible(true);
+				fadeTransitionAnimation.setDuration(loginScrollPane.hvalueProperty(), -50.0, 20);
+				fadeTransitionAnimation.playDuration();
+				
+				fadeTransitionAnimation.setFadeTransition(loginScrollPane, 1000, 0, 0.0, 1, true, false);
+				fadeTransitionAnimation.playFadeTransition();
+			}
+		});
+		
+		/* When the user clicks through the tab field starting at the Email field it would
+		 * go in a loop from password field to create account button and never touch the email field. 
+		 * 
+		 * This listener is to make the loop go back to the email field. 
+		 */
+		
+		emailField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent keyEvent) {
+				
+				if(keyEvent.getCode() == KeyCode.TAB) {
+					//Sets the Password field to focused 
+					passwordField.setFocusTraversable(true);
+				}
+			}
+		});
+
+		createAccountButton.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent keyEvent) {
+				
+				if(keyEvent.getCode() == KeyCode.TAB) {
+					//Sets the Email field to focused 
+					emailField.setFocusTraversable(true);
+				}
+			}
+		});
+		
+		// Added this listener for the Enter Key. If the user presses Enter then can make the login call
+		passwordField.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent keyEvent) {
+				
+				if(keyEvent.getCode() == KeyCode.ENTER) {
+					
+				}
+			}
+		});
+		
+		signInButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+												
+				fadeTransitionAnimation.setDuration(loginScrollPane.hvalueProperty(), 50.0, 15);
+				fadeTransitionAnimation.playDuration();
+				
+				fadeTransitionAnimation.setFadeTransition(loginScrollPane, 1000, 500, 1, 0.0, false, true);
+				fadeTransitionAnimation.playFadeTransition();
+			}
+		});
+		
+		createAccountButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				
 			}
 		});
 	}
 	
-	public void openMenu() {				
-		DoubleProperty doubleProperty = navMenuSplitPane.getDividers().get(0).positionProperty();
-		DoubleTransition dt = new DoubleTransition(Duration.millis(1000), doubleProperty);
-		dt.setToValue(0.19); dt.play();	
+	public void openMenu() {	
 		
-		FadeTransition ft = new FadeTransition(Duration.millis(1000), dimPane);
-		ft.setFromValue(0.0);
-		ft.setToValue(.45);
-		ft.play();		
+		fadeTransitionAnimation.setDuration(navMenuSplitPane.getDividers().get(0).positionProperty(), .19, 1);
+		fadeTransitionAnimation.playDuration();
 		
-		ft.setOnFinished(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				doubleProperty.getValue();
-				dimPane.setMouseTransparent(false);
-				open = false;
-			}
-		});	
+		fadeTransitionAnimation.setFadeTransition(dimPane, 1000, 0, 0.0, .45, false, false);
+		fadeTransitionAnimation.playFadeTransition();
+		
+		open = false;
 	}
 	
 	public void closeMenu() {			
-		DoubleProperty doubleProperty = navMenuSplitPane.getDividers().get(0).positionProperty();
-		DoubleTransition dt = new DoubleTransition(Duration.millis(1000), doubleProperty);
-		dt.setToValue(0); dt.play();
+		
+		fadeTransitionAnimation.setDuration(navMenuSplitPane.getDividers().get(0).positionProperty(), 0, 1);
+		fadeTransitionAnimation.playDuration();
+		
+		fadeTransitionAnimation.setFadeTransition(dimPane, 1000, 0, .45, 0.0, false, true);
+		fadeTransitionAnimation.playFadeTransition();
 				
-		FadeTransition ft = new FadeTransition(Duration.millis(1000), dimPane);
-		ft.setFromValue(.45);
-		ft.setToValue(0.0);
-		ft.play();
-				
-		ft.setOnFinished(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				dimPane.setMouseTransparent(true);
-				open = true;
-			}
-		});
+		open = true;
 	}
 	
 	@Override

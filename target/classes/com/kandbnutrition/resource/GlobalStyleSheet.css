@@ -7,15 +7,31 @@
 .standard-background {
  	-fx-background-color: #8BC34A;
 }
+
+.standard-background-faded {
+	 -fx-background-color: derive(#8BC34A, 30%); 
+}
+
+.standard-background-white {
+	-fx-background-color: white;
+}
  
 .standard-hover-text-action:hover {
  	-fx-text-fill: #76FF03;
+}
+
+.standard-secondary-hover-text-action:hover {
+	-fx-text-fill: #727272;
 }
 
 .standard-background-hover {
 	-fx-background-color: #76FF03;
 }
  
+.standard-primary-background-text {
+	-fx-text-fill: #8BC34A;
+}
+
 .standard-primary-text {
  	-fx-text-fill: #212121;
  	-fx-font-size: 14;
