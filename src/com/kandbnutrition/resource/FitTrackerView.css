@@ -27,7 +27,7 @@
 }
 
 #textFieldImage {
-	-fx-image: url("../resource/image/textField.PNG");
+	-fx-image: url("../resource/image/textField.png");
 }
 
 #addExerciseButton {
