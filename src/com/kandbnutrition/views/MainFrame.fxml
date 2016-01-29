@@ -14,7 +14,7 @@
 <?import javafx.scene.control.TextField?>
 <?import com.kandbnutrition.controller.*?>
 
-<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="832.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="832.0" styleClass="standard-background-white" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
                         <children>
                           <StackPane layoutY="70.0" prefHeight="479.0" prefWidth="832.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                             <children>
@@ -144,6 +144,40 @@
                                  </AnchorPane>
                             </children>
                           </Pane>
+      <ScrollPane id="loginScrollPane" fx:id="loginScrollPane" hbarPolicy="NEVER" layoutX="-19.0" prefHeight="552.0" prefWidth="842.0" styleClass="standard-background-white" vbarPolicy="NEVER" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane fx:id="loginAnchorPane" prefHeight="564.0" prefWidth="1500.0" styleClass="standard-background-faded">
+               <children>
+                  <Pane fx:id="loginPaneContainer" layoutX="-28.0" layoutY="62.0" prefHeight="440.0" prefWidth="838.0" styleClass="standard-background-faded" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0">
+                  	<children>
+                  	<Pane layoutX="305.0" layoutY="10.0" prefHeight="420.0" prefWidth="232.0" styleClass="standard-background-white">
+      		               <children>
+      		                  <TextField fx:id="emailField" focusTraversable="false" layoutX="33.0" layoutY="197.0" prefHeight="25.0" prefWidth="166.0" promptText="Email" styleClass="standard-primary-text" />
+      		                  <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="34.0" layoutY="228.0" prefHeight="25.0" prefWidth="166.0" promptText="Password" styleClass="standard-primary-text" />
+      		                  <Label id="loginLabel" layoutX="34.0" layoutY="98.0" styleClass="standard-primary-background-text" text="Sign In" />
+      		                  <Button fx:id="signInButton" layoutX="33.0" layoutY="270.0" mnemonicParsing="false" text="Sign In">
+                                 <styleClass>
+                                    <String fx:value="standard-background" />
+                                    <String fx:value="standard-secondary-hover-text-action" />
+                                 </styleClass>
+                              </Button>
+      		                  <Button fx:id="createAccountButton" layoutX="95.0" layoutY="270.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Create Account">
+                                 <styleClass>
+                                    <String fx:value="standard-background" />
+                                    <String fx:value="standard-secondary-hover-text-action" />
+                                 </styleClass>
+                              </Button>
+      		                  <Label id="errorLabel" fx:id="errorLabel" alignment="CENTER" layoutX="6.0" layoutY="87.0" prefHeight="36.0" prefWidth="222.0" text="Label" textAlignment="CENTER" visible="false" wrapText="true" />
+      		                  <ImageView id="signIn_loading_icon" fx:id="signIn_loading_icon" fitHeight="25.0" fitWidth="43.0" layoutX="104.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                 				 <ImageView id="signInImage" fitHeight="84.0" fitWidth="104.0" layoutX="72.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+      		               </children>
+            		</Pane>
+                  	</children>
+                  	</Pane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
                         </children>
    <stylesheets>
       <URL value="@../resource/MainFrame.css" />

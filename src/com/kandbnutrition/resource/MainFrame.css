@@ -5,7 +5,7 @@
 	-fx-cursor: null;
 }
 
-#navMenuSplitPane {
+#navMenuSplitPane,#loginScrollPane, .gridPane, #navMenu {
 	-fx-background-color: white;
 }
 
@@ -14,6 +14,7 @@
 	-fx-background-color: black;
 	-fx-opacity: 0;
 }
+
 #stackPaneAnchorPane {
 	-fx-background-color: #98FF42;
 }
@@ -54,18 +55,10 @@
  * Navigation Menu 
  */
  
-.gridPane {
-	-fx-background-color: white;
-}
- 
 .label {
 	-fx-font-weight: bold;
 	-fx-font-family: 'sans-serif';
 	-fx-font-size: 12;
-}
-
-#navMenu {
-	-fx-background-color: white;
 }
 
 #searchImageView {
@@ -82,4 +75,45 @@
 
 #logoutImageView {
 	-fx-image: url("../resource/image/logout.png");
+}
+
+/* Login CSS  */
+
+#loginLabel {
+	-fx-font-family: 'sans serif';
+	-fx-font-size: 50px;
+	-fx-font-weight: bold;
+}
+
+.text-field {
+	-fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
+.button {
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+	-fx-font-family: 'sans serif';
+}
+
+.button:hover {
+	-fx-background-color:  #76FF03, linear-gradient(#76FF03, #B2FF59);
+}
+
+#signInImage {	
+	-fx-image: url("../resource/image/NutritionLogo.png");
+}
+
+#signIn_loading_icon {
+	-fx-image: url("../resource/image/loadingIcon.gif");
+}
+
+.pane {
+	-fx-background-color: white;
+}
+
+#errorLabel {
+	-fx-font-family: 'sans-serif';
+	-fx-text-fill: #E53935 ;
+	-fx-font-size: 15px;	
 }
