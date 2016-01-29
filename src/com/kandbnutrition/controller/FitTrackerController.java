@@ -13,6 +13,8 @@ import java.util.ResourceBundle;
 import com.kandbnutrition.model.FitTrackerData;
 import com.kandbnutrition.resource.StringValues;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,8 +50,11 @@ public class FitTrackerController extends AnchorPane implements Initializable{
 	
 	public FitTrackerController() {
 		
+		controller = this;
+		
 		stringValues = new StringValues();
 		fitTrackerData = FXCollections.observableArrayList();
+		
 		createOneCell = true;
 		clickedAmount = 1;
 				
@@ -64,7 +69,6 @@ public class FitTrackerController extends AnchorPane implements Initializable{
 			throw new RuntimeException(e);
 		}
 		
-		controller = this;
 		
 		/*
 		 * When the user presses the + Add Exercise button this is the listener 
@@ -82,6 +86,10 @@ public class FitTrackerController extends AnchorPane implements Initializable{
 					
 					listView.setItems(fitTrackerData);
 					setCellFactory();	
+					
+					setTextFill(deleteButton, "#212121");
+					delete = false;
+					clickedAmount = 1;
 			}
 		});	
 		
@@ -98,13 +106,26 @@ public class FitTrackerController extends AnchorPane implements Initializable{
 								
 				if(clickedAmount == 1) {
 					
-					deleteButton.setStyle("-fx-text-fill: red;");
+					setTextFill(deleteButton, "red");
 					clickedAmount = 2;
 				} else if(clickedAmount == 2) {
 					
 					clickedAmount = 1;
 					delete = false;
-					deleteButton.setStyle("-fx-text-fill: #212121;");
+					setTextFill(deleteButton, "#212121");
+				}
+			}
+		});
+		
+		deleteButton.hoverProperty().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				
+				if(newValue == true) {
+					setTextFill(deleteButton, "red");
+				} else if(newValue == false && delete == false) {
+					setTextFill(deleteButton, "#212121");
 				}
 			}
 		});
@@ -138,6 +159,11 @@ public class FitTrackerController extends AnchorPane implements Initializable{
 		this.fitTrackerDataCopy = fitTrackerDataCopy;
 		
 		listView.setItems(this.fitTrackerDataCopy);
+	}
+	
+	public void setTextFill(Button button, String color) {
+		
+		button.setStyle("-fx-text-fill:" + " " + color);
 	}
 
 	@Override

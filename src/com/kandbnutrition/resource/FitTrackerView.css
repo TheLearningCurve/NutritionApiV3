@@ -36,10 +36,6 @@
 	-fx-font-weight: 700;
 }
 
-#deleteButton:hover {
-	-fx-text-fill:red;
-}
-
 .vBox , .scroll-pane, #anchor-pane, .grid-pane{
 	-fx-border-color: white ;
 }

@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="100.0" prefWidth="500.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" prefHeight="100.0" prefWidth="482.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Line fx:id="leftLine" endX="-80.0" layoutX="115.0" layoutY="22.0" startX="-115.0" AnchorPane.leftAnchor="-0.5" AnchorPane.rightAnchor="472.0" />
+      <Line fx:id="leftLine" endX="-80.0" layoutX="115.0" layoutY="30.0" startX="-115.0" AnchorPane.leftAnchor="-0.5" AnchorPane.rightAnchor="472.0" />
       <TextField id="exerciseTextField" fx:id="exerciseTextField" alignment="CENTER" focusTraversable="false" layoutX="24.0" layoutY="3.0" prefHeight="37.0" prefWidth="170.0" promptText="Enter Exercise Here" styleClass="standard-primary-text" />
-      <Line fx:id="rightLine" endX="221.0" layoutX="286.0" layoutY="23.0" startX="-102.0" />
+      <Line fx:id="rightLine" endX="221.0" layoutX="286.0" layoutY="30.0" startX="-102.0" />
       <Line endX="257.0" layoutX="250.0" layoutY="99.0" startX="-250.0" />
       <HBox alignment="CENTER_LEFT" layoutY="40.0" prefHeight="55.0" prefWidth="508.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <children>
-            <Label styleClass="standard-secondary-text" text="Weight:">
+            <Label fx:id="weightLabel" styleClass="standard-secondary-text" text="Weight:">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>
@@ -30,7 +30,7 @@
                   <String fx:value="standard-primary-text" />
                </styleClass>
             </TextField>
-            <Label styleClass="standard-secondary-text" text="Reps:">
+            <Label fx:id="repsLabel" styleClass="standard-secondary-text" text="Reps:">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>
@@ -44,7 +44,7 @@
                   <String fx:value="standard-primary-text" />
                </styleClass>
             </TextField>
-            <Label styleClass="standard-secondary-text" text="Sets:">
+            <Label fx:id="setsLabel" styleClass="standard-secondary-text" text="Sets:">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
