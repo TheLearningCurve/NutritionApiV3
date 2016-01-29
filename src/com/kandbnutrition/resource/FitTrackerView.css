@@ -30,10 +30,14 @@
 	-fx-image: url("../resource/image/textField.PNG");
 }
 
-#addExerciseButton {
+#addExerciseButton, #deleteButton {
 	-fx-background-color: white;
 	-fx-font-size: 14;
 	-fx-font-weight: 700;
+}
+
+#deleteButton:hover {
+	-fx-text-fill:red;
 }
 
 .vBox , .scroll-pane, #anchor-pane, .grid-pane{
