@@ -28,11 +28,17 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="1.0" layoutY="3.0" prefHeight="61.0" prefWidth="500.0" styleClass="vBox" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="2.0">
                      <children>
-                        <Button id="addExerciseButton" fx:id="addExerciseButton" alignment="TOP_CENTER" mnemonicParsing="false" text="+ Add Exercise">
-                           <styleClass>
-                              <String fx:value="standard-primary-text" />
-                              <String fx:value="standard-hover-text-action" />
-                           </styleClass></Button>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Button id="addExerciseButton" fx:id="addExerciseButton" alignment="TOP_CENTER" mnemonicParsing="false" text="+ Add Exercise">
+                                 <styleClass>
+                                    <String fx:value="standard-primary-text" />
+                                    <String fx:value="standard-hover-text-action" />
+                                 </styleClass>
+                              </Button>
+                              <Button id="deleteButton" fx:id="deleteButton" alignment="TOP_CENTER" mnemonicParsing="false" styleClass="standard-primary-text" text="- Delete Exercise" />
+                           </children>
+                        </HBox>
                         <AnchorPane prefHeight="31.0" prefWidth="515.0">
                            <children>
                               <HBox id="weekdayHbox" alignment="CENTER" prefHeight="31.0" prefWidth="496.0" styleClass="standard-background" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">

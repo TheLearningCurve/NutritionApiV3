@@ -13,6 +13,8 @@ import java.util.ResourceBundle;
 import com.kandbnutrition.model.FitTrackerData;
 import com.kandbnutrition.resource.StringValues;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,13 +26,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
 public class FitTrackerController extends AnchorPane implements Initializable{
 	
 	@FXML 
-	Button addExerciseButton, sunButton, monButton, tuesButton, wedButton, thursButton, friButton, satButton;
+	Button addExerciseButton, deleteButton, sunButton, monButton, tuesButton, wedButton, thursButton, friButton, satButton;
 	
 	@FXML
 	TextField workoutTextField;
@@ -38,16 +41,23 @@ public class FitTrackerController extends AnchorPane implements Initializable{
 	@FXML 
 	ListView<FitTrackerData> listView;
 	
+	private FitTrackerController controller;
 	private StringValues stringValues;
 	private ObservableList<FitTrackerData> fitTrackerData;
-	private boolean createOneCell;
+	private ObservableList<FitTrackerData> fitTrackerDataCopy;
+	private boolean createOneCell, delete;
+	private int index, clickedAmount;
 	
 	public FitTrackerController() {
 		
+		controller = this;
+		
 		stringValues = new StringValues();
 		fitTrackerData = FXCollections.observableArrayList();
-		createOneCell = true;
 		
+		createOneCell = true;
+		clickedAmount = 1;
+				
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(stringValues.getFitTrackerViewFxml()));
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
@@ -58,6 +68,7 @@ public class FitTrackerController extends AnchorPane implements Initializable{
 		catch (IOException e){
 			throw new RuntimeException(e);
 		}
+		
 		
 		/*
 		 * When the user presses the + Add Exercise button this is the listener 
@@ -70,24 +81,89 @@ public class FitTrackerController extends AnchorPane implements Initializable{
 			@Override
 			public void handle(ActionEvent event) {
 				
-				if(createOneCell) {
-				
 					// Data to test with
 					fitTrackerData.add(new FitTrackerData("", "0", "0", "0", "Sun"));
 					
 					listView.setItems(fitTrackerData);
-									
-					listView.setCellFactory(new Callback<ListView<FitTrackerData>, ListCell<FitTrackerData>>() {
-						
-						@Override
-						public ListCell<FitTrackerData> call(ListView<FitTrackerData> param) {
-		
-								return new CustomFitTrackerCell();
-						}
-					});
-				} 	
+					setCellFactory();	
+					
+					setTextFill(deleteButton, "#212121");
+					delete = false;
+					clickedAmount = 1;
 			}
 		});	
+		
+		/*
+		 * This listener determines when the user is in a state to delete items
+		 */
+		
+		deleteButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				
+				delete = true;
+								
+				if(clickedAmount == 1) {
+					
+					setTextFill(deleteButton, "red");
+					clickedAmount = 2;
+				} else if(clickedAmount == 2) {
+					
+					clickedAmount = 1;
+					delete = false;
+					setTextFill(deleteButton, "#212121");
+				}
+			}
+		});
+		
+		deleteButton.hoverProperty().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				
+				if(newValue == true) {
+					setTextFill(deleteButton, "red");
+				} else if(newValue == false && delete == false) {
+					setTextFill(deleteButton, "#212121");
+				}
+			}
+		});
+	}
+	
+	/*
+	 * Needed to put the setCellFactory as a method to use multiple times
+	 */
+
+	public void setCellFactory() {
+		
+		listView.setCellFactory(new Callback<ListView<FitTrackerData>, ListCell<FitTrackerData>>() {
+			
+			@Override
+			public ListCell<FitTrackerData> call(ListView<FitTrackerData> param) {
+				
+				return new CustomFitTrackerCell(controller);
+			}
+		});	
+	}
+	
+	public boolean getDelete() {
+		return delete;
+	}
+	
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	
+	public void setCopyOfList(ObservableList<FitTrackerData> fitTrackerDataCopy) {
+		this.fitTrackerDataCopy = fitTrackerDataCopy;
+		
+		listView.setItems(this.fitTrackerDataCopy);
+	}
+	
+	public void setTextFill(Button button, String color) {
+		
+		button.setStyle("-fx-text-fill:" + " " + color);
 	}
 
 	@Override
