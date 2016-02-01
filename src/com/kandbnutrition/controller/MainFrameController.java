@@ -108,6 +108,7 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 									
 				if(open == true){
 					openMenu();
+					searchFieldController.setTextFieldDisabled(true, 0);
 				}else if(open == false){
 					closeMenu();
 				}
@@ -251,12 +252,14 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 	}
 	
 	public void closeMenu() {			
-		
+				
 		fadeTransitionAnimation.setDuration(navMenuSplitPane.getDividers().get(0).positionProperty(), 0, 1);
 		fadeTransitionAnimation.playDuration();
 		
 		fadeTransitionAnimation.setFadeTransition(dimPane, 1000, 0, .45, 0.0, false, true);
 		fadeTransitionAnimation.playFadeTransition();
+		
+		searchFieldController.setTextFieldDisabled(false, 1);
 				
 		open = true;
 	}
@@ -310,6 +313,10 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 		
 		nutritionLabelDimPane.setVisible(visible);
 		nutritionLabelDimPane.setOpacity(opacity);
+	}
+	
+	public boolean getMenuState() {
+		return open;
 	}
 	
 	@Override
