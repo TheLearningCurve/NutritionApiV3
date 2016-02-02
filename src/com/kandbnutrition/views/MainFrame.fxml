@@ -152,24 +152,33 @@
                   	<children>
                   	<Pane layoutX="305.0" layoutY="10.0" prefHeight="420.0" prefWidth="232.0" styleClass="standard-background-white">
       		               <children>
-      		                  <TextField fx:id="emailField" focusTraversable="false" layoutX="33.0" layoutY="197.0" prefHeight="25.0" prefWidth="166.0" promptText="Email" styleClass="standard-primary-text" />
-      		                  <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="34.0" layoutY="228.0" prefHeight="25.0" prefWidth="166.0" promptText="Password" styleClass="standard-primary-text" />
+                              <VBox fx:id="loginContainerVBox" layoutX="32.0" layoutY="197.0" spacing="10.0" styleClass="standard-background-white">
+                                 <children>
+            		                  <TextField fx:id="emailField" focusTraversable="false" layoutX="33.0" layoutY="197.0" prefHeight="25.0" prefWidth="166.0" promptText="Email" styleClass="standard-primary-text" />
+            		                  <PasswordField fx:id="passwordField" focusTraversable="false" prefHeight="25.0" prefWidth="166.0" promptText="Password" styleClass="standard-primary-text" />
+                                    <HBox spacing="10.0" styleClass="standard-background-white">
+                                       <children>
+                  		                  <Button fx:id="signInButton" mnemonicParsing="false" text="Sign In">
+                                             <styleClass>
+                                                <String fx:value="standard-background" />
+                                                <String fx:value="standard-secondary-hover-text-action" />
+                                             </styleClass>
+                                          </Button>
+                  		                  <Button fx:id="createAccountButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Create Account">
+                                             <styleClass>
+                                                <String fx:value="standard-background" />
+                                                <String fx:value="standard-secondary-hover-text-action" />
+                                             </styleClass>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
       		                  <Label id="loginLabel" layoutX="34.0" layoutY="98.0" styleClass="standard-primary-background-text" text="Sign In" />
-      		                  <Button fx:id="signInButton" layoutX="33.0" layoutY="270.0" mnemonicParsing="false" text="Sign In">
-                                 <styleClass>
-                                    <String fx:value="standard-background" />
-                                    <String fx:value="standard-secondary-hover-text-action" />
-                                 </styleClass>
-                              </Button>
-      		                  <Button fx:id="createAccountButton" layoutX="95.0" layoutY="270.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Create Account">
-                                 <styleClass>
-                                    <String fx:value="standard-background" />
-                                    <String fx:value="standard-secondary-hover-text-action" />
-                                 </styleClass>
-                              </Button>
-      		                  <Label id="errorLabel" fx:id="errorLabel" alignment="CENTER" layoutX="6.0" layoutY="87.0" prefHeight="36.0" prefWidth="222.0" text="Label" textAlignment="CENTER" visible="false" wrapText="true" />
       		                  <ImageView id="signIn_loading_icon" fx:id="signIn_loading_icon" fitHeight="25.0" fitWidth="43.0" layoutX="104.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                  				 <ImageView id="signInImage" fitHeight="84.0" fitWidth="104.0" layoutX="72.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label id="errorLabel" fx:id="errorLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="171.0" prefHeight="27.0" prefWidth="170.0" styleClass="standard-error-text" textAlignment="CENTER" wrapText="true" />
+                              <ImageView fx:id="loadingIcon" fitHeight="27.0" fitWidth="27.0" layoutX="102.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" styleClass="standard-loading-icon" visible="false" />
       		               </children>
             		</Pane>
                   	</children>
