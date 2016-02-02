@@ -30,7 +30,7 @@
 	-fx-image: url("../resource/image/textField.png");
 }
 
-#addExerciseButton {
+#addExerciseButton, #deleteButton {
 	-fx-background-color: white;
 	-fx-font-size: 14;
 	-fx-font-weight: 700;

@@ -39,7 +39,7 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 	ListView<String> listView;
 	
 	@FXML
-	ImageView imageButton;
+	ImageView searchButton;
 	
 	@FXML
 	HBox HBoxContainerForListView;
@@ -75,9 +75,7 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 		try {
 			fxmlLoader.load();
 			this.listController.setSearchFieldController(this);
-		}
-		
-		catch (IOException e) {
+		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	
@@ -94,18 +92,15 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 						QueryVariables.setText(searchField.getText());
 						requestTypeAHeadData();
 						searchFieldErrorMessgae.setVisible(false);			
-					}
-					else if(searchField.getText().length() == 0) { // If the text in the search field is empty we do not want the listView to display
+					} else if(searchField.getText().length() == 0) { // If the text in the search field is empty we do not want the listView to display
 						setListViewVisibleFalse(); 
 					}
-				}
-				else if(event.getCode() == KeyCode.ENTER) {
+				} else if(event.getCode() == KeyCode.ENTER) {
 					
 					if(searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty()) { // If the text is at least on Char long we want to search for type a head
 						searchingLogicForSearchField();
 					    // If the enter key is pressed we want to search for Item Results
-					}
-					else {
+					} else {
 						searchFieldErrorMessgae.setVisible(true);
 					}
 				}
@@ -114,60 +109,42 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 	  }
 
 	@FXML 
-	public void searchMouseListener(MouseEvent event)
-	{
+	public void searchMouseListener(MouseEvent event) {
 
-		if(event.getSource().equals(listView))
-		{
+		if(event.getSource().equals(listView)) {
 			QueryVariables.setSearchTerm(listView.getSelectionModel().getSelectedItem());
 			searchField.setText(listView.getSelectionModel().getSelectedItem());
 			
-			if(listController.listView.getItems().isEmpty() && searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty())
-			{
+			if(listController.listView.getItems().isEmpty() && searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty()) {
 				FirstSearchCall();
-			}
-			else if(!listController.listView.getItems().isEmpty() && 
-					listView.getSelectionModel().getSelectedItem().compareTo(searchFieldText) != 0)
-			{
+			} else if(!listController.listView.getItems().isEmpty() && 
+					listView.getSelectionModel().getSelectedItem().compareTo(searchFieldText) != 0) {
 				ClearListSearchCall();
-			}
-			else if(listView.getSelectionModel().getSelectedItem().compareTo(searchFieldText) == 0)
-			{
+			} else if(listView.getSelectionModel().getSelectedItem().compareTo(searchFieldText) == 0) {
 				setListViewVisibleFalse();
 			}
-		}
-		else if(event.getSource().equals(imageButton))
-		{
+		} else if(event.getSource().equals(searchButton)) {
 	       searchingLogicForSearchField();
 		}	
 	}
 	
-	public void searchingLogicForSearchField()
-	{
+	public void searchingLogicForSearchField() {
 		QueryVariables.setSearchTerm(searchField.getText());
 		
-		if(listController.listView.getItems().isEmpty() && searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty())
-		{
+		if(listController.listView.getItems().isEmpty() && searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty()) {
 			FirstSearchCall();
-		}
-		else if(!listController.listView.getItems().isEmpty() && searchField.getText().compareTo(searchFieldText) != 0
-				&& searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty())
-		{
+		} else if(!listController.listView.getItems().isEmpty() && searchField.getText().compareTo(searchFieldText) != 0
+				&& searchField.getText().length() != 0 && !searchField.getText().trim().isEmpty()) {
 			ClearListSearchCall();
-
-		}
-		else if(searchField.getText().compareTo(searchFieldText) == 0)
-		{
+		} else if(searchField.getText().compareTo(searchFieldText) == 0) {
 			setListViewVisibleFalse();
-		}	
-		else
-		{
+		} else {
 			searchFieldErrorMessgae.setVisible(true);
 		}
 	}
 	
-	public void FirstSearchCall()
-	{
+	public void FirstSearchCall() {
+		
 		listController.setErrorMessageVisible(false);
 		requestSearchData();
 		rememberTextField(searchField.getText());	
@@ -176,8 +153,8 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 		setListViewVisibleFalse();
 	}
 	
-	public void ClearListSearchCall()
-	{
+	public void ClearListSearchCall() {
+		
 		QueryVariables.clearOffset();
 		listController.setErrorMessageVisible(false);
 		listController.listView.getItems().clear();
@@ -193,83 +170,68 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 		searchFieldText = string;
 	}
 
-	public void requestTypeAHeadData()
-	{
+	public void requestTypeAHeadData() {
 		adapter.getapicalls.typeAhead(QueryVariables.text, new Callback<List<TypeAHead>>() {
 		
 			@Override
-			public void success(List<TypeAHead> typeAhead, Response response) 
-			{
+			public void success(List<TypeAHead> typeAhead, Response response) {
 				
 				ObservableList<String> typeAheadText = FXCollections.observableArrayList();
 				
-				if(!searchField.getText().isEmpty())
-				{
+				if(!searchField.getText().isEmpty()) {
 					
-					if(!typeAhead.isEmpty())
-					{
-						for(TypeAHead h : typeAhead)
-						{
+					if(!typeAhead.isEmpty()) {
+						
+						for(TypeAHead h : typeAhead) {
 							typeAheadText.add(h.text);
 						}	
 						
 						settypeaHeadtext(typeAheadText);
-						setListViewVisibleUITrue(); // Display the ListView
+						setListViewVisibleTrue(); // Display the ListView
 					}
 					
-					if(typeAhead.isEmpty())
-					{
+					if(typeAhead.isEmpty()) {
 						settypeaHeadtext(typeAheadText);
-						setListViewVisibleUITrue(); // Display the ListView
+						setListViewVisibleTrue(); // Display the ListView
 					}
 				}
 			}
 			
 			@Override
-			public void failure(RetrofitError retrofitError) 
-			{
+			public void failure(RetrofitError retrofitError) {
 				
 			}
-		
 		});
 	}
 	
-	public void requestSearchData()
-	{				
+	public void requestSearchData() {
+		
 		adapter.getapicalls.searchFoodLimitAndOffset(QueryVariables.searchTerm, 50, QueryVariables.offset, new Callback<SearchData>() {
 						
 			@Override
-			public void success(final SearchData searchData, Response response) 
-			{				
+			public void success(final SearchData searchData, Response response) {				
 				listController.getResultLabel(searchData.total,QueryVariables.searchTerm);
 				
-				if(!searchData.results.isEmpty())
-				{
+				if(!searchData.results.isEmpty()) {
 					createList(searchData);	
-				}
-				else 
-				{
+				} else {
 					listController.setprogressIndicatorVisible(false);
-
 				}
-
 				
 				setListViewVisibleFalse();
 			}
 			
 			@Override
-			public void failure(RetrofitError retrofitError) 
-			{
-				if(retrofitError.getKind().name() == "NETWORK")
-				{
+			public void failure(RetrofitError retrofitError) {
+				
+				if(retrofitError.getKind().name() == "NETWORK"){
 					listController.updateErrorMessageUI(retrofitError.getKind().name());
-				}
-									
+				}					
 			}
 		});		
 	}
 	
-	protected void setListViewVisibleUITrue() {
+	protected void setListViewVisibleTrue() {
 		
 		new JFXPanel();
 		Platform.runLater(new Runnable() {
@@ -277,8 +239,7 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 			@Override
 			public void run() {
 				
-				if(gettypeaHeadtext() != null && !gettypeaHeadtext().isEmpty())
-				{
+				if(gettypeaHeadtext() != null && !gettypeaHeadtext().isEmpty()) {
 					HBoxContainerForListView.setPrefHeight(140);
 					listView.setVisible(true);
 					listView.setItems(gettypeaHeadtext());
@@ -300,18 +261,33 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 	
 	public void settypeaHeadtext(ObservableList<String> typeaHeadtext) {
 		
-		if(this.typeaHeadtext.equals(typeaHeadtext))
-    	{
+		if(this.typeaHeadtext.equals(typeaHeadtext)) {
 			this.typeaHeadtext = typeaHeadtext;
     	}
-		else if(typeaHeadtext.isEmpty())
-		{
+		else if(typeaHeadtext.isEmpty()) {
 			this.typeaHeadtext = typeaHeadtext;
 		}
-    	else 
-    	{
+    	else  {
     		this.typeaHeadtext = typeaHeadtext;
     	}
+	}
+	
+	public void reset() {
+		listView.getItems().clear();
+		searchField.clear();
+	}
+	
+	public void setTextFieldDisabled(boolean disable, double opacity ) {
+		
+		searchField.setDisable(disable);
+		searchButton.setOpacity(opacity);
+		searchButton.setDisable(disable);
+		
+		if(disable) {
+			setListViewVisibleFalse();
+		} else {
+			setListViewVisibleTrue();
+		}
 	}
 
 	@Override
@@ -332,10 +308,5 @@ public class SearchFieldController extends AnchorPane implements Initializable {
 				listController.displayListView();
 			}
 		});
-	}
-
-	public void reset() {
-		listView.getItems().clear();
-		searchField.clear();
 	}
 }
