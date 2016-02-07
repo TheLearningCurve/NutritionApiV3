@@ -8,15 +8,12 @@ package com.kandbnutrition.service;
 
 import com.firebase.client.Firebase;
 
-public class FireBaseService {
+public enum FireBaseService {
+	INSTANCE;
 	
-	protected static Firebase firebase;
-	
-	protected FireBaseService() {
-		
-	}
+	private Firebase firebase = null;
 
-	public static Firebase getFirebaseInstance() {
+	public Firebase getFirebase() {
 		
 		if(firebase == null) {
 			firebase = new Firebase(Config.BASE_FIREBASE_URL);

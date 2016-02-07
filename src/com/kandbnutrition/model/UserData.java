@@ -10,21 +10,10 @@ package com.kandbnutrition.model;
  * that will be made for the Fittracker. 
  */
 
-public class UserData {
+public enum UserData {
+	INSTANCE;
 	
-	private static UserData userData;
 	private String email, firstName, lastName, uID;
-	
-	protected UserData() {}
-	
-	public static synchronized UserData getUserData() {
-		
-		if(userData == null) {
-			userData = new UserData();
-		}
-		
-		return userData;
-	}
 	
 	/*
 	 * Set all of the users information on login, when Authenticated 

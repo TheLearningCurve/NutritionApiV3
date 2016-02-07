@@ -31,10 +31,9 @@ public class Authentication {
 	
 	public Authentication() {
 		
-		fireBaseService = new FireBaseService();
-		userData = UserData.getUserData();
-		
-		firebase = FireBaseService.getFirebaseInstance();
+		fireBaseService = FireBaseService.INSTANCE;
+		firebase = fireBaseService.getFirebase();
+		userData = UserData.INSTANCE;
 	}
 	
 	public void setUserInformation(String email, String password) {
