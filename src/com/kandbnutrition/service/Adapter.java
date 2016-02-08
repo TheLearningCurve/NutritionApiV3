@@ -30,7 +30,7 @@ public class Adapter {
         public Adapter() {
 			
 			 RestAdapter restAdapter = new RestAdapter.Builder()
-	          .setEndpoint(Config.BASE_URL)
+	          .setEndpoint(Config.BASE_NUTRITIONIX_URL)
 //	          .setLogLevel(RestAdapter.LogLevel.FULL)
 			  .setRequestInterceptor(requestInterceptor)
 	          .setErrorHandler(new ErrorHandling())

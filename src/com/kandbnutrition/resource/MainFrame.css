@@ -114,6 +114,5 @@
 
 #errorLabel {
 	-fx-font-family: 'sans-serif';
-	-fx-text-fill: #E53935 ;
-	-fx-font-size: 15px;	
+	-fx-font-size: 12px;	
 }
