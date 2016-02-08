@@ -1,10 +1,8 @@
 package bv.util.animation;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -19,7 +17,6 @@ import javafx.util.Duration;
  */
 public class AnchorPaneMotion
 {
-	private AnchorPane pane;
 	private Timeline timeline;
 	private KeyFrame keyFrame;
 	
@@ -33,10 +30,11 @@ public class AnchorPaneMotion
 	private int numberOfSteps;
 	private Point startPoint;
 	private Point endPoint;
-	private List<Point> finalSteps;
+	private List<Point> forwardSteps;
+	private List<Point> backwardSteps;
+	private List<Point> stepsToBePlayed;
 	int index = 0;
 	
-	private int stepsIndex = 0;	//	Used for the steps array.
 	
 	/**
 	 * Constructor
@@ -45,12 +43,12 @@ public class AnchorPaneMotion
 	 * @param endPoint - X,Y coordinate to final position.
 	 * @param equationType - What kind of motion you prefer.  Example: start slow then end fast (XSQARED), start fast then end slow (XINVERSESQUARE).
 	 */
-	public AnchorPaneMotion(AnchorPane pane, double totalDuration, Point endPoint, EquationType equationType)
+	
+	public AnchorPaneMotion(AnchorPane pane, double totalDuration, Point endPoint, EquationType equationType, int fps)
 	{
 		this.totalDuration = totalDuration;
-		keyFrameDuration = 50.0 / 3.0;	//	Recommended: 16.66 (50/3).  Mirrors 60fps.  Milliseconds per frame (1000/60).
+		keyFrameDuration = 1000.0 / fps;	//	Recommended: 16.66 (50/3).  Mirrors 60fps.  Milliseconds per frame (1000/60).
 		this.endPoint = endPoint;
-		this.pane = pane;
 		
 		numberOfSteps = (int)(totalDuration / keyFrameDuration);
 		
@@ -58,7 +56,8 @@ public class AnchorPaneMotion
 		
 		startPoint = new Point(pane.getLayoutX(), pane.getLayoutY());
 		Steps steps = new Steps(totalDuration, keyFrameDuration, numberOfSteps, startPoint, endPoint, equationType);
-		List<Point> finalSteps = steps.getSteps();
+		this.forwardSteps = steps.getForwardSteps();
+		this.backwardSteps = steps.getBackwardSteps();
 		
 		keyFrame = new KeyFrame(Duration.millis(keyFrameDuration), new EventHandler<ActionEvent> () {
 			
@@ -67,8 +66,8 @@ public class AnchorPaneMotion
 			@Override
 			public void handle(ActionEvent arg0) 
 			{
-				pane.setLayoutX(finalSteps.get(index).getX());
-				pane.setLayoutY(finalSteps.get(index).getY());
+				pane.setLayoutX(stepsToBePlayed.get(index).getX());
+				pane.setLayoutY(stepsToBePlayed.get(index).getY());
 				
 				index++;
 				
@@ -96,11 +95,27 @@ public class AnchorPaneMotion
 				
 	}
 	
+	public AnchorPaneMotion(AnchorPane pane, double totalDuration, Point endPoint, EquationType equationType)
+	{
+		this(pane, totalDuration, endPoint, equationType, 60);
+	}
+	
 	/**
 	 * Plays the animation.
 	 */
 	public void play()
 	{
+		stepsToBePlayed = forwardSteps;
+		timeline.play();
+	}
+	
+	/**
+	 * Reverses the animation.  Essentially, the inverse of the steps used.  For example, step 1 in ForwardSteps
+	 * will be the last step in BackwardsSteps.
+	 */
+	public void reverse()
+	{
+		stepsToBePlayed = backwardSteps;
 		timeline.play();
 	}
 	
@@ -142,6 +157,6 @@ public class AnchorPaneMotion
 	
 	public List<Point> getFinalSteps()
 	{
-		return finalSteps;
+		return forwardSteps;
 	}
 }

@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Steps 
 {
-	private List<Point> steps;
+	private List<Point> forwardSteps;
+	private List<Point> backwardSteps;
 	private XPowerEquation equation;
 	
 	private double yDifference;	// Difference between steps x-axis.
@@ -14,6 +15,8 @@ public class Steps
 	private double addToCoordinateRatio = 0.0;
 	private double addToXCoordinate = 0.0;
 	private double addToYCoordinate = 0.0;
+	
+	private int numberOfSteps;
 	
 	public Steps(double totalDuration, double keyFrameDuration, int numberOfCycles, Point startPoint, Point endPoint, EquationType equationType)
 	{
@@ -29,7 +32,8 @@ public class Steps
 		else if (equationType == EquationType.XINVERSECUBED)
 			equation = new XPowerEquation((1.0 / 3.0));
 		
-		steps = new ArrayList<Point> ();
+		forwardSteps = new ArrayList<Point> ();
+		numberOfSteps = numberOfCycles;
 		
 		xDifference = endPoint.getX() - startPoint.getX();
 		yDifference = endPoint.getY() - startPoint.getY();
@@ -41,14 +45,26 @@ public class Steps
 			addToXCoordinate = addToCoordinateRatio * xDifference;
 			addToYCoordinate = addToCoordinateRatio * yDifference;
 			
-			steps.add(new Point(addToXCoordinate, addToYCoordinate));
+			forwardSteps.add(new Point(addToXCoordinate, addToYCoordinate));
 			
 			//System.out.println(currentPoint.getX() + " " + currentPoint.getY());
 		}
+		
+		
+		
+		for(int i = numberOfSteps; i >= 0; i--)
+		{
+			backwardSteps.add(new Point(forwardSteps.get(i).getX(), forwardSteps.get(i).getY()));
+		}
 	}
 	
-	public List<Point> getSteps()
+	public List<Point> getForwardSteps()
 	{
-		return steps;
+		return forwardSteps;
+	}
+	
+	public List<Point> getBackwardSteps()
+	{
+		return backwardSteps;
 	}
 }
