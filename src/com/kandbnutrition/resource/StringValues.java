@@ -10,6 +10,7 @@ public class StringValues {
 	private String SINGLECELLFXML    		= VIEWPATH + "CustomSearchCell.fxml";
 	private String FITTRACKERVIEWFXML 		= VIEWPATH + "FitTrackerView.fxml";
 	private String CUSTOMFITTRACKERCELLFMXL = VIEWPATH + "CustomFitTrackerCell.fxml";
+	private String SIGNINFXML				= VIEWPATH + "SignIn.fxml";
 	
 	public String getMainFrameFxml(){
 		return MAINFRAMEFXML;
@@ -37,5 +38,9 @@ public class StringValues {
 	
 	public String getCustomFitTrackerCellFxml() {
 		return CUSTOMFITTRACKERCELLFMXL;
+	}
+	
+	public String getSignInFxml() {
+		return SIGNINFXML;
 	}
 }
