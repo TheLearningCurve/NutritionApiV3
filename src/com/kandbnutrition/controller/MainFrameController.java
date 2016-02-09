@@ -9,8 +9,6 @@ import com.kandbnutrition.animation.FadeTransitionAnimation;
 import com.kandbnutrition.handler.FxmlHandler;
 import com.kandbnutrition.resource.FeatureState;
 import com.kandbnutrition.resource.StringValues;
-import com.kandbnutrition.service.Authentication;
-import com.kandbnutrition.service.CreateAccount;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -18,20 +16,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 public class MainFrameController extends AnchorPane implements Initializable, FxmlHandler {		
 	
@@ -42,49 +34,36 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 	SplitPane navMenuSplitPane;
 	
 	@FXML
-	Label errorLabel;
-	
-	@FXML
 	ScrollPane loginScrollPane;
 	
 	@FXML
-	AnchorPane navMenu, loginAnchorPane;
+	AnchorPane navMenu;
 	
 	@FXML
 	ProgressIndicator ItemListProgressIndicator;
 	
 	@FXML
-	ImageView largeLogo, loadingIcon;
+	ImageView largeLogo;
 	
 	@FXML
-	Button navMenuButton, signInButton, createAccountButton;
-	
-	@FXML
-	TextField emailField;
-	
-	@FXML
-	PasswordField passwordField;
+	Button navMenuButton;
 	
 	@FXML
 	HBox searchIconHBox, macroCalculatorHBox, fitTrackerHBox, logoutHBox, itemListContainer;
 	
-	@FXML
-	VBox loginContainerVBox;
-	
-	private FadeTransitionAnimation fadeTransitionAnimation;
-	private StringValues stringValues;
 	private SearchFieldController searchFieldController;
 	private FitTrackerController fitTrackerController;
+	private SignInController signInController;
 	
 	public SearchListFrameController searchListFrameController;	
 	public NutritionLabelFrameController nutritionLabelFrameController;
 	
-	private boolean open = true;
-	private double erroLabelStandardHeight;
-	private FeatureState featureState = FeatureState.Search;
+	private FadeTransitionAnimation fadeTransitionAnimation;
+	private StringValues stringValues;
 	
-	private Authentication authentication;
-		
+	private boolean open = true;
+	private FeatureState featureState = FeatureState.SignIn;
+			
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle){}
 	
@@ -94,11 +73,10 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 		nutritionLabelFrameController = new NutritionLabelFrameController(this);
 		searchListFrameController = new SearchListFrameController(nutritionLabelFrameController, this);
 		searchFieldController = new SearchFieldController(searchListFrameController, this);
+		signInController = new SignInController(this);
+		
 		stringValues = new StringValues();
 		fadeTransitionAnimation = new FadeTransitionAnimation();
-		
-		authentication = new Authentication();
-		authentication.setMainController(this);
 				
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(stringValues.getMainFrameFxml()));
 		fxmlLoader.setRoot(this);
@@ -122,9 +100,7 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 		/*
 		 * Need to get the standard height of the object for other methods to use for calculations 
 		 */
-		
-		erroLabelStandardHeight = errorLabel.getPrefHeight();
-	
+			
 		navMenuButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -188,7 +164,7 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 			@Override
 			public void handle(MouseEvent event) {
 				
-				resetLogin();	
+				signInController.resetLogin();	
 				closeMenu();
 				
 				loginScrollPane.setVisible(true);
@@ -199,97 +175,6 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 				fadeTransitionAnimation.playFadeTransition();
 			}
 		});
-		
-		/* When the user clicks through the tab field starting at the Email field it would
-		 * go in a loop from password field to create account button and never touch the email field. 
-		 * 
-		 * This listener is to make the loop go back to the email field. 
-		 */
-		
-		emailField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent keyEvent) {
-				
-				if(keyEvent.getCode() == KeyCode.TAB) {
-					//Sets the Password field to focused 
-					passwordField.setFocusTraversable(true);
-				}
-			}
-		});
-
-		createAccountButton.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent keyEvent) {
-				
-				if(keyEvent.getCode() == KeyCode.TAB) {
-					//Sets the Email field to focused 
-					emailField.setFocusTraversable(true);
-				}
-			}
-		});
-		
-		// Added this listener for the Enter Key. If the user presses Enter then can make the login call
-		passwordField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent keyEvent) {
-				
-				if(keyEvent.getCode() == KeyCode.ENTER) {
-					
-				}
-			}
-		});
-		
-		signInButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				
-				loadingIconVisible(true);
-				authentication.setUserInformation(emailField.getText(), passwordField.getText());
-				authentication.authenticate();
-			}
-		});
-		
-		createAccountButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				
-				authentication.createAccount("Alex", "Wolff", "alex@testing.com", "password1");
-			}
-		});
-	}
-	
-	/*
-	 * Method to set the error message UI when the authentication fails
-	 */
-	
-	public void setErrorMessage(String errorMessage) {
-		
-		Platform.runLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				
-				errorLabel.setVisible(true);
-				
-				if(errorMessage.length() > 19 && errorLabel.getPrefHeight() <= erroLabelStandardHeight) {
-					
-					errorLabel.setText(errorMessage);
-					errorLabel.setPrefHeight(errorLabel.getHeight() + 20);
-					loginContainerVBox.setLayoutY(loginContainerVBox.getLayoutY() + 20);
-				} else {
-					errorLabel.setText(errorMessage);
-				}
-			}
-		});
-	}
-	
-	public void loadingIconVisible(boolean visible) {
-		loadingIcon.setVisible(visible);
 	}
 	
 	/*
@@ -310,22 +195,6 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 				fadeTransitionAnimation.playFadeTransition();
 			}
 		});
-	}
-	
-	/*
-	 * Method to reset the login view
-	 */
-	
-	public void resetLogin() {
-		
-		passwordField.clear();
-		errorLabel.setText("");
-		
-		if(errorLabel.getPrefHeight() >= (erroLabelStandardHeight + 20)) {
-			
-			errorLabel.setPrefHeight(errorLabel.getHeight() - 20);
-			loginContainerVBox.setLayoutY(loginContainerVBox.getLayoutY() - 20);
-		}
 	}
 	
 	public void openMenu() {	
@@ -367,10 +236,18 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 		nutritionLabelDimPane.setOpacity(opacity);
 	}
 	
+	public void setFeatureState(FeatureState featureState) {
+		this.featureState = featureState;
+	}
+	
 	@Override
 	public void addFxml() {
-						
-		if(featureState == FeatureState.Search) {
+		
+		if(featureState == FeatureState.SignIn) {
+			loginPaneContainer.getChildren().add(signInController);
+		} else if(featureState == FeatureState.CreateAccount) {
+			
+		}  else if(featureState == FeatureState.Search) {
 			
 			optionsAnchorPane.setVisible(true);
 			

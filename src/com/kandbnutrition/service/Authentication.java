@@ -1,11 +1,5 @@
 package com.kandbnutrition.service;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /*
  * Created 1/30/2016 by Kyle Wolff
  * 
@@ -13,6 +7,9 @@ import java.util.Map;
  * 
  * We will use this class for Login and Create Account.
  */
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
@@ -22,11 +19,13 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ServerValue;
 import com.firebase.client.ValueEventListener;
 import com.kandbnutrition.controller.MainFrameController;
+import com.kandbnutrition.controller.SignInController;
 import com.kandbnutrition.model.UserData;
 
 public class Authentication {
 	
 	private MainFrameController mainFrameController;
+	private SignInController signInController;
 	
 	private FireBaseService fireBaseService;
 	private Firebase firebase, users;
@@ -62,15 +61,15 @@ public class Authentication {
 			@Override
 			public void onAuthenticationError(FirebaseError fireBaseError) {
 				
-				mainFrameController.loadingIconVisible(false);
+				signInController.loadingIconVisible(false);
 				errorMessage = fireBaseError.getMessage();
-				mainFrameController.setErrorMessage(errorMessage);
+				signInController.setErrorMessage(errorMessage);
 			}
 			
 			@Override
 			public void onAuthenticated(AuthData authData) {
 						
-				mainFrameController.loadingIconVisible(false);
+				signInController.loadingIconVisible(false);
 				mainFrameController.login();
 						
 						if(!newUser.isEmpty()) {
@@ -143,7 +142,8 @@ public class Authentication {
 		createAccount.createAccount(firstName, lastName, email, password);
 	}
 
-	public void setMainController(MainFrameController mainFrameController) {
+	public void setMainController(MainFrameController mainFrameController, SignInController signInController) {
 		this.mainFrameController = mainFrameController;
+		this.signInController = signInController;
 	}
 }
