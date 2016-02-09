@@ -10,6 +10,7 @@ import com.kandbnutrition.handler.FxmlHandler;
 import com.kandbnutrition.resource.FeatureState;
 import com.kandbnutrition.resource.StringValues;
 import com.kandbnutrition.service.Authentication;
+import com.kandbnutrition.service.CreateAccount;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -257,6 +258,7 @@ public class MainFrameController extends AnchorPane implements Initializable, Fx
 			@Override
 			public void handle(MouseEvent event) {
 				
+				authentication.createAccount("Alex", "Wolff", "alex@testing.com", "password1");
 			}
 		});
 	}

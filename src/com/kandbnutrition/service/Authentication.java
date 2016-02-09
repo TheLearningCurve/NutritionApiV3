@@ -1,6 +1,11 @@
 package com.kandbnutrition.service;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /*
  * Created 1/30/2016 by Kyle Wolff
  * 
@@ -24,16 +29,20 @@ public class Authentication {
 	private MainFrameController mainFrameController;
 	
 	private FireBaseService fireBaseService;
-	private Firebase firebase;
+	private Firebase firebase, users;
 	private UserData userData;
+	private CreateAccount createAccount;
 	
 	private String email, password, errorMessage;
+	private List<String> newUser;
 	
 	public Authentication() {
 		
 		fireBaseService = FireBaseService.INSTANCE;
-		firebase = fireBaseService.getFirebase();
 		userData = UserData.INSTANCE;
+		firebase = fireBaseService.getFirebase();
+		createAccount = new CreateAccount(this);
+		newUser = new ArrayList<>();
 	}
 	
 	public void setUserInformation(String email, String password) {
@@ -60,29 +69,79 @@ public class Authentication {
 			
 			@Override
 			public void onAuthenticated(AuthData authData) {
-				
+						
 				mainFrameController.loadingIconVisible(false);
 				mainFrameController.login();
-												
-				firebase.child(FireBaseVariables.USERS + authData.getUid()).addValueEventListener(new ValueEventListener() {
-					
-					@Override
-					public void onDataChange(DataSnapshot data) {
-							
-						userData.setUserInformation((String) authData.getProviderData().get(FireBaseVariables.Email),  
-								data.child(FireBaseVariables.FirstName).getValue().toString(), data.child(FireBaseVariables.LastName).getValue().toString() , authData.getUid());						
-					}
-					
-					@Override
-					public void onCancelled(FirebaseError firebaseError) {
 						
-					}
-				});
-				
-				firebase.child(FireBaseVariables.USERS + authData.getUid()).child(FireBaseVariables.LastLogin).setValue(ServerValue.TIMESTAMP);
+						if(!newUser.isEmpty()) {
+							
+							firebase.child(FireBaseVariables.USERS + authData.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+								
+								@Override
+								public void onDataChange(DataSnapshot data) {
+									
+									/*
+									 * For some reason a hashMap was not working but this way does work. 
+									 * 
+									 * We are getting the AuthData UID then setting the values to the correct key.
+									 * The index will not change for FirstName, LastName, Email
+									 */
+									
+									firebase.child(FireBaseVariables.USERS + authData.getUid()).child(FireBaseVariables.FirstName).setValue(newUser.get(0));
+									firebase.child(FireBaseVariables.USERS + authData.getUid()).child(FireBaseVariables.LastName).setValue(newUser.get(1));
+									firebase.child(FireBaseVariables.USERS + authData.getUid()).child(FireBaseVariables.Email).setValue(newUser.get(2));
+									firebase.child(FireBaseVariables.USERS + authData.getUid()).child(FireBaseVariables.CreatedDate).setValue(ServerValue.TIMESTAMP);
+								}
+								
+								@Override
+								public void onCancelled(FirebaseError fireBaseError) {
+									
+								}
+							});
+						}
+						
+						firebase.child(FireBaseVariables.USERS + authData.getUid()).addValueEventListener(new ValueEventListener() {
+							
+							@Override
+							public void onDataChange(DataSnapshot data) {
+								
+								/*
+								 * The Email and UID cannot be NULL 
+								 */
+								
+								if(authData.getUid() != null && data.child(FireBaseVariables.Email).getValue() != null) {
+									
+									userData.setUserInformation((String) authData.getProviderData().get(FireBaseVariables.Email),  
+											data.child(FireBaseVariables.FirstName).getValue().toString(), data.child(FireBaseVariables.LastName).getValue().toString() , authData.getUid());						
+								}
+							}
+							
+							@Override
+							public void onCancelled(FirebaseError firebaseError) {
+								
+							}
+						});
+						
+						firebase.child(FireBaseVariables.USERS + authData.getUid()).child(FireBaseVariables.LastLogin).setValue(ServerValue.TIMESTAMP);			
 			}
 		});
 	};
+	
+	/*
+	 * Set a new users information for Authentication purposes 
+	 */
+	
+	public void setPutValue(String firstName, String lastName, String email) {
+	
+		newUser.add(firstName);
+		newUser.add(lastName);
+		newUser.add(email);	
+	}
+	
+	public void createAccount(String firstName, String lastName, String email, String password) {
+		
+		createAccount.createAccount(firstName, lastName, email, password);
+	}
 
 	public void setMainController(MainFrameController mainFrameController) {
 		this.mainFrameController = mainFrameController;
