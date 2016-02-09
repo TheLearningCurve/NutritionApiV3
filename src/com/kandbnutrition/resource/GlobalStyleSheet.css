@@ -30,6 +30,8 @@
  
 .standard-primary-background-text {
 	-fx-text-fill: #8BC34A;
+	-fx-font-size: 14;
+	-fx-font-family: 'sans-serif';
 }
 
 .standard-primary-text {
@@ -51,6 +53,12 @@
 .standard-dropshadow-effect {
 	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );	
 }
+
+.text-field {
+	-fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
 
 .list-cell {
 	-fx-background-color: white;
