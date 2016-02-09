@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class CreateAccount extends AnchorPane implements Initializable
+public class CreateAccountController extends AnchorPane implements Initializable
 {
 	@FXML
 	Button btnSubmit;
@@ -19,7 +19,7 @@ public class CreateAccount extends AnchorPane implements Initializable
 	@FXML
 	Button btnCancel;
 	
-	public CreateAccount()
+	public CreateAccountController()
 	{
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("com/kandbnutrition/views/CreateAccount.fxml"));
 		fxmlLoader.setRoot(this);
