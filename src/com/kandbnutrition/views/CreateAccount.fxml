@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="standard-background-white" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children> 
+      <Label id="createAccountLabel" alignment="CENTER" layoutX="96.0" layoutY="14.0" prefHeight="58.0" prefWidth="405.0" styleClass="standard-primary-background-text" text="Create Account" textAlignment="CENTER" />
+      <TextField id="tstFirstName" fx:id="txtFirstName" layoutX="86.0" layoutY="99.0" prefHeight="25.0" prefWidth="199.0" promptText="First name" styleClass="standard-primary-text" />
+      <TextField fx:id="txtLastName" layoutX="314.0" layoutY="99.0" prefHeight="25.0" prefWidth="199.0" promptText="Last name" styleClass="standard-primary-text" />
+      <TextField fx:id="txtEmail" layoutX="199.0" layoutY="139.0" prefHeight="25.0" prefWidth="199.0" promptText="Email" styleClass="standard-primary-text" />
+      <Button fx:id="btnSubmit" layoutX="149.0" layoutY="287.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Submit">
+         <styleClass>
+            <String fx:value="standard-background" />
+            <String fx:value="standard-secondary-hover-text-action" />
+         </styleClass></Button>
+      <Button fx:id="btnSubmit" layoutX="314.0" layoutY="287.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Cancel">
+         <styleClass>
+            <String fx:value="standard-background" />
+            <String fx:value="standard-secondary-hover-text-action" />
+         </styleClass></Button>
+      <PasswordField fx:id="txtPassword" layoutX="199.0" layoutY="174.0" prefHeight="25.0" prefWidth="199.0" promptText="Password" styleClass="standard-primary-text" />
+      <PasswordField fx:id="txtPasswordRetype" layoutX="199.0" layoutY="211.0" prefHeight="25.0" prefWidth="199.0" promptText="Re-type password" styleClass="standard-primary-text" />
+   </children>
+   <stylesheets>
+      <URL value="@../resource/GlobalStyleSheet.css" />
+      <URL value="@../resource/CreateAccount.css" />
+   </stylesheets>
+</fx:root>

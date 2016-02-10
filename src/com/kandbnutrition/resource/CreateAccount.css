@@ -1,0 +1,14 @@
+#createAccountLabel {
+	-fx-font-size: 50px;
+	-fx-font-weight: bold;
+}
+
+.button {
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+	-fx-font-family: 'sans serif';
+}
+
+.button:hover {
+	-fx-background-color:  #76FF03, linear-gradient(#76FF03, #B2FF59);
+}
